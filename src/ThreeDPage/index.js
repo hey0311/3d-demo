@@ -263,7 +263,7 @@ class ThreeDPage extends Component {
 
     render() {
         return (
-            <div id="3d-page" style={{height: '100%', width: '100%', position: 'relative'}}>
+            <div id="3d-page" style={{height: '100%', width: '100%', position: 'relative',overflow:'hidden'}}>
                 <div id="three-container"></div>
                 <div id="chart-container-left-top" className="chart-container"></div>
                 <div id="chart-container-left-bottom" className="chart-container"></div>

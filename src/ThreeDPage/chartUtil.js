@@ -1,6 +1,6 @@
 /* eslint-disable */
 import echarts from 'echarts'
-import {getColor,randomData,setWarning} from "./util"
+import {getColor} from "./util"
 const axisFontSize=16;
 const chartTitleSize=20;
 const chartBkColor='rgba(128, 128, 128, 0)';
