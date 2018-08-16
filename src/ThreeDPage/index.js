@@ -2,13 +2,14 @@ import React, {Component} from 'react';
 import './index.css';
 import * as threeUtil from "./threeUtil";
 import * as chartUtil from "./chartUtil"
-import {randomData} from "./util"
+import {randomData,setWarning} from "./util"
 import _ from 'lodash'
 
 class ThreeDPage extends Component {
     constructor(p) {
         super(p);
         var now = new Date();
+        this.threeConfig={};
         this.state = {
             data: {
                 inTemp: [{
@@ -40,7 +41,7 @@ class ThreeDPage extends Component {
     }
 
     componentDidMount() {
-        threeUtil.render3d();
+        threeUtil.render3d(this.threeConfig);
         chartUtil.renderBarChart(this.state.data);
         chartUtil.renderLineChart(this.state.data);
         this.refreshChart();
@@ -66,9 +67,39 @@ class ThreeDPage extends Component {
                 data.outTemp = data.outTemp.slice(1, data.outTemp.length);
             }
             data.outTemp.push(randomData(data.outTemp, 'outTemp'));
-            console.log(data.inTemp)
-            this.setState({data})
+            this.setState({data});
+            this.refresh3DModel();
         }, 1000)
+    }
+    refresh3DModel(){
+        if (this.threeConfig.editor.scene.children) {
+            let modelObj=this.threeConfig.modelObj;
+            var reyaModelMap = [{
+                objName: 'Obj3d66_582169_127_839',
+                mes: 'inTemp',
+                mesName: '入口温度'
+            }, {
+                objName: 'Obj3d66_582169_127_838',
+                mes: 'centerTemp',
+                mesName: '中部温度'
+            }, {
+                objName: 'Obj3d66_582169_127_837',
+                mes: 'outTemp',
+                mesName: '出口温度'
+            }];
+            for (var i = 0; i <modelObj.children.length; i++) {
+                for (var j = 0; j < reyaModelMap.length; j++) {
+                    if (modelObj.children[i].name === reyaModelMap[j].objName) {
+                        setWarning(modelObj.children[i], this.state.data[reyaModelMap[j].mes][this.state.data[reyaModelMap[j].mes].length - 1].formatValue);
+                    }
+                }
+/*                for (var j = 0; j <jqModelMap.length; j++) {
+                    if (obj.children[i].name === jqModelMap[j].objName) {
+                        setWarning(obj.children[i], data_jq[jqModelMap[j].mes][data_jq[jqModelMap[j].mes].length - 1].formatValue);
+                    }
+                }*/
+            }
+        }
     }
 
     render() {

@@ -2,8 +2,7 @@
 import fileObj from '../res/fa1.obj';
 import fileMtl from '../res/fa1.mtl';
 var THREE = window.THREE;
-export const render3d=()=>{
-    console.log(window)
+export const render3d=(threeConfig)=>{
 
 /*    function onWindowResize(event) {
         editor.signals.windowResize.dispatch();
@@ -27,7 +26,7 @@ export const render3d=()=>{
         return this.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
     };
     var editor = new Editor();
-    window.editor=editor;
+    threeConfig.editor=editor;
     var viewport = new Viewport(editor);
     document.getElementById('three-container').appendChild(viewport.dom);
     var script = new Script(editor);
@@ -57,6 +56,7 @@ export const render3d=()=>{
             objLoader.setMaterials(mtl);
             var object = objLoader.parse(file1);
             editor.execute(new AddObjectCommand(object));
+            threeConfig.modelObj=editor.scene.children[0];
             // editor.focus(editor.scene.children[0].children[0]);
             var devices=[
                 {
