@@ -34,7 +34,7 @@ export const renderBarChart=(data,threeConfig)=>{
         mes: 'rowBack',
         mesName: '横回程速度'
     }];
-    var myChart = echarts.init(document.getElementById('echart-container'));
+    var myChart = echarts.init(document.getElementById('chart-container-reyaBar'));
     var option = {
         backgroundColor:'rgba(128, 128, 128, 0)',
         title: {
@@ -195,7 +195,7 @@ export const renderLineChart=(data,mes)=>{
         rowGive:32,
         rowBack:40
     };
-    var myChart = echarts.init(document.getElementById('info-container'));
+    var myChart = echarts.init(document.getElementById('chart-container-reyaLine'));
     var option = {
         backgroundColor:'rgba(128, 128, 128, 0)',
         title: {

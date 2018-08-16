@@ -142,13 +142,11 @@ class ThreeDPage extends Component {
 
     render() {
         return (
-            <div id="3d-page" style={{height: '100%', width: '100%', position: 'relative', display: 'flex'}}>
+            <div id="3d-page" style={{height: '100%', width: '100%', position: 'relative'}}>
                 <div id="three-container"></div>
-                <div id="detail">
-                    <div id="echart-container" className="dmini"></div>
-                    <div id="info-container" className="dmini"></div>
-                    <input type="button" id="goto-main" value="返回主界面"/>
-                </div>
+                <div id="chart-container-reyaBar" className="chart-container"></div>
+                <div id="chart-container-reyaLine" className="chart-container"></div>
+                <input type="button" id="goto-main" value="返回主界面"/>
                 <h1>
                     生产实时监控
                 </h1>
