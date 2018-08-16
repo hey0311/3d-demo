@@ -185,15 +185,10 @@ class ThreeDPage extends Component {
 
     renderChart(resize) {
         if (resize) {
-            var myChart;
-            myChart = echarts.init(document.getElementById('chart-container-right-top'));
-            myChart.resize()
-            myChart = echarts.init(document.getElementById('chart-container-left-top'));
-            myChart.resize()
-            myChart = echarts.init(document.getElementById('chart-container-right-bottom'));
-            myChart.resize()
-            myChart = echarts.init(document.getElementById('chart-container-left-bottom'));
-            myChart.resize()
+            this.myChart_left_top.resize();
+            this.myChart_right_top.resize();
+            this.myChart_left_bottom.resize();
+            this.myChart_right_bottom.resize();
         }
         let reyaTitle = '', jqTitle = '';
         this.reyaModelMap.map((m) => {
@@ -206,14 +201,24 @@ class ThreeDPage extends Component {
                 jqTitle = m.mesName;
             }
         })
-        chartUtil.renderBarChart('chart-container-right-top', this.state.data, this.threeConfig, this.reyaModelMap, '热压设备温度监测');
-        chartUtil.renderBarChart('chart-container-left-top', this.state.data2, this.threeConfig, this.jqModelMap, '锯切速度监测');
-        chartUtil.renderLineChart('chart-container-right-bottom', this.state.data, this.state.mes, this.reyaModelMap, reyaTitle, this.reyaStand);
-        chartUtil.renderLineChart('chart-container-left-bottom', this.state.data2, this.state.jqMes, this.jqModelMap, jqTitle, this.jqStand);
+        chartUtil.renderBarChart(this.myChart_right_top, this.state.data, this.threeConfig, this.reyaModelMap, '热压设备温度监测');
+        chartUtil.renderBarChart(this.myChart_left_top, this.state.data2, this.threeConfig, this.jqModelMap, '锯切速度监测');
+        chartUtil.renderLineChart(this.myChart_right_bottom, this.state.data, this.state.mes, this.reyaModelMap, reyaTitle, this.reyaStand);
+        chartUtil.renderLineChart(this.myChart_left_bottom, this.state.data2, this.state.jqMes, this.jqModelMap, jqTitle, this.jqStand);
     }
 
     componentDidMount() {
         threeUtil.render3d(this.threeConfig);
+        this.myChart_right_top = echarts.init(document.getElementById('chart-container-right-top'));
+        this.myChart_right_top.on('click', (params)=> {
+            this.threeConfig.chartItemClickedFn(params.name);
+        });
+        this.myChart_left_top = echarts.init(document.getElementById('chart-container-left-top'));
+        this.myChart_left_top.on('click', (params)=> {
+            this.threeConfig.chartItemClickedFn(params.name);
+        });
+        this.myChart_right_bottom = echarts.init(document.getElementById('chart-container-right-bottom'));
+        this.myChart_left_bottom = echarts.init(document.getElementById('chart-container-left-bottom'));
         this.renderChart();
         this.refreshChart();
     }

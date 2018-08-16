@@ -4,8 +4,8 @@ import {getColor} from "./util"
 const axisFontSize=16;
 const chartTitleSize=20;
 const chartBkColor='rgba(128, 128, 128, 0)';
-export const renderBarChart=(chartId,data,threeConfig,modelMap,title)=>{
-    var myChart = echarts.init(document.getElementById(chartId));
+export const renderBarChart=(myChart,data,threeConfig,modelMap,title)=>{
+    // var myChart = echarts.init(document.getElementById(chartId));
     let sdata=[],xAxisData=[];
     for(let key in data){
         sdata.push({
@@ -71,12 +71,9 @@ export const renderBarChart=(chartId,data,threeConfig,modelMap,title)=>{
         }]
     };
     myChart.setOption(option);
-    myChart.on('click', function (params) {
-        threeConfig.chartItemClickedFn(params.name);
-    });
 }
-export const renderLineChart=(chartId,data,mes,modelMap,title,stand)=>{
-    var myChart = echarts.init(document.getElementById(chartId));
+export const renderLineChart=(myChart,data,mes,modelMap,title,stand)=>{
+    // var myChart = echarts.init(document.getElementById(chartId));
     var option = {
         backgroundColor:chartBkColor,
         title: {
@@ -177,26 +174,4 @@ export const renderLineChart=(chartId,data,mes,modelMap,title,stand)=>{
         }]
     };
     myChart.setOption(option);
-}
-function chartClickFun(map,params) {
-    var objName;
-    for (var j = 0; j < map.length; j++) {
-        if (params.name === map[j].mesName) {
-            objName = map[j].objName;
-            if(echart_show==0){
-                mes = map[j].mes;
-            }else{
-                mes_jq = map[j].mes;
-            }
-            showChildChart = true;
-            selectMesName = map[j].mesName;
-        }
-    }
-    if (obj) {
-        for (var i = 0; i < obj.children.length; i++) {
-            if (obj.children[i].name === objName) {
-                editor.focus(obj.children[i]);
-            }
-        }
-    }
 }
