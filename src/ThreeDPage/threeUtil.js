@@ -7,7 +7,6 @@ import negz from '../images/negz.jpg';
 import posx from '../images/posx.jpg';
 import posy from '../images/posy.jpg';
 import posz from '../images/posz.jpg';
-
 var THREE = window.THREE;
 export const render3d = (threeConfig) => {
     window.URL = window.URL || window.webkitURL;
@@ -39,6 +38,8 @@ export const render3d = (threeConfig) => {
             var object = objLoader.parse(file1);
             editor.execute(new AddObjectCommand(object));
             threeConfig.modelObj = editor.scene.children[0];
+            //设置模型大小
+            resetSceneScale(editor);
             //添加提示框
             addSprite(editor);
             //调整相机视角
@@ -47,11 +48,10 @@ export const render3d = (threeConfig) => {
             addLight(editor);
             //设置背景
             setBackground(editor);
-            //设置模型大小
-            resetSceneScale(editor);
             //添加天空盒
             addSkyBox(editor);
             editor.select(null);
+            console.log(editor.scene.children[0].position)
         })
     });
     //缩放事件
@@ -65,6 +65,7 @@ export const render3d = (threeConfig) => {
         threeConfig.objectSelectedFn(obj);
     });
 };
+
 function resetSceneScale(editor) {
     for (var i = 0; i < editor.scene.children.length; i++) {
         editor.scene.children[i].scale.x = 0.01;
@@ -79,7 +80,7 @@ function addSkyBox(editor) {
     var skyGeometry = new THREE.BoxGeometry(5000, 5000, 5000);
     //设置盒子材质
     var materialArray = [];
-    let jpgFileArr=[posx,negx,posy,negy,posz,negz];
+    let jpgFileArr = [posx, negx, posy, negy, posz, negz];
     for (var i = 0; i < 6; i++)
         materialArray.push(new THREE.MeshBasicMaterial({
             map: THREE.ImageUtils.loadTexture(jpgFileArr[i]),//将图片纹理贴上
@@ -143,84 +144,114 @@ function readTextFile(file, callback) {
     rawFile.send(null);
 }
 
+/**
+ * 天空盒
+ * @param editor
+ */
 function addSprite(editor) {
     var devices = [
         {
             text: '横锯回程',
-            position: [-200, 500, 200],
-            size: [280, 120, 280],
-            fontSize: 72
+            position: [-1.5, 4, 1.5],
+            size: [3, 1],
+            fontSize: 73
         }, {
             text: '横锯进给',
-            position: [-200, 500, -325],
-            size: [280, 120, 280],
-            fontSize: 72
+            position: [-1.5, 4, -3.5],
+            size: [3, 1],
+            fontSize: 73
         }, {
             text: '纵锯回程',
-            position: [-200, 500, -850],
-            size: [280, 120, 280],
-            fontSize: 72
+            position: [-1.5, 4, -8.75],
+            size: [3, 1],
+            fontSize: 73
         }, {
             text: '纵锯进给',
-            position: [-200, 500, -1375],
-            size: [280, 120, 280],
-            fontSize: 72
+            position: [-1.5, 4, -13.95],
+            size: [3, 1],
+            fontSize: 73
         },
         {
             text: '出口',
-            position: [800, 300, -300],
-            size: [180, 120, 180],
-            fontSize: 120
+            position: [8, 3, -2.4],
+            size: [3, 1],
+            fontSize: 73
         }, {
             text: '中部',
-            position: [800, 300, -720],
-            size: [180, 120, 180],
-            fontSize: 120
+            position: [8, 3, -6.6],
+            size: [3, 1],
+            fontSize: 73
         }, {
             text: '入口',
-            position: [800, 300, -1120],
-            size: [180, 120, 180],
-            fontSize: 120
+            position: [8, 3, -10.8],
+            size: [3, 1],
+            fontSize: 73
         }
     ];
     var sprite = null;
     for (var i = 0; i < devices.length; i++) {
-        sprite = createSpriteText(devices[i].position,
-            devices[i].text, devices[i].size,
-            devices[i].fontSize,
-            devices[i].size[0] < 200 ? true : false);
+        sprite = makeTextSprite(devices[i].text,{
+            fontsize:devices[i].fontSize,
+            position:devices[i].position,
+            size:devices[i].size
+        })
         editor.scene.add(sprite);
     }
-
 }
 
-function createSpriteText(pos, text, size, fontSize, short) {
-    //先用画布将文字画出
-    var canvas = document.createElement("canvas");
-    var ctx = canvas.getContext("2d");
-    ctx.fillStyle = 'rgb(9,16,45,0.8)';
-    ctx.strokeStyle = '#016487';
-    ctx.lineWidth = 15;
-    ctx.fillRect(0, 0, canvas.width - 5, canvas.height - 5);
-    ctx.strokeRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "#16ffff";
-    ctx.font = "Bold " + fontSize / 10 + "px Arial";
-    ctx.lineWidth = 8;
-    if (short) {
-        ctx.fillText(text, 25, 114);
-    } else {
-        ctx.fillText(text, 4, 104);
-    }
-    var texture = new THREE.Texture(canvas);
+function makeTextSprite(message, parameters) {
+    if (parameters === undefined) parameters = {};
+    var fontface = parameters.hasOwnProperty("fontface") ? parameters["fontface"] : "Arial";
+    var fontsize = parameters.hasOwnProperty("fontsize") ? parameters["fontsize"] : 18;
+    var borderThickness = parameters.hasOwnProperty("borderThickness") ? parameters["borderThickness"] : 4;
+    var borderColor = parameters.hasOwnProperty("borderColor") ? parameters["borderColor"] : {r: 0, g: 0, b: 0, a: 1.0};
+    var backgroundColor = parameters.hasOwnProperty("backgroundColor") ? parameters["backgroundColor"] : {
+        r: 255,
+        g: 255,
+        b: 255,
+        a: 1.0
+    };
+    var textColor = parameters.hasOwnProperty("textColor") ? parameters["textColor"] : {r: 0, g: 0, b: 0, a: 1.0};
+
+    var canvas = document.createElement('canvas');
+    var context = canvas.getContext('2d');
+    context.font = "Bold " + fontsize + "px " + fontface;
+    var metrics = context.measureText(message);
+    var textWidth = metrics.width;
+
+    context.fillStyle = "rgba(" + backgroundColor.r + "," + backgroundColor.g + "," + backgroundColor.b + "," + backgroundColor.a + ")";
+    context.strokeStyle = "rgba(" + borderColor.r + "," + borderColor.g + "," + borderColor.b + "," + borderColor.a + ")";
+
+    context.lineWidth = borderThickness;
+    roundRect(context, borderThickness / 2, borderThickness / 2, (textWidth + borderThickness) * 1.1, fontsize * 1.4 + borderThickness, 8);
+
+    context.fillStyle = "rgba(" + textColor.r + ", " + textColor.g + ", " + textColor.b + ", 1.0)";
+    context.fillText(message, borderThickness, fontsize + borderThickness);
+
+    var texture = new THREE.Texture(canvas)
     texture.needsUpdate = true;
 
-    //使用Sprite显示文字
-    var material = new THREE.SpriteMaterial({map: texture});
-    var textObj = new THREE.Sprite(material);
-    textObj.name = 'test';
-    textObj.scale.set(size[0] / 1000, size[1] / 1000, size[2] / 1000);
-    textObj.position.set(pos[0] / 1000, pos[1] / 1000, pos[2] / 1000);
-    return textObj;
+    var spriteMaterial = new THREE.SpriteMaterial({map: texture, useScreenCoordinates: false});
+    var sprite = new THREE.Sprite(spriteMaterial);
+    sprite.scale.set(...parameters.size);
+    sprite.position.set(...parameters.position);
+    return sprite;
+}
+
+function roundRect(ctx, x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.lineTo(x + w - r, y);
+    ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+    ctx.lineTo(x + w, y + h - r);
+    ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+    ctx.lineTo(x + r, y + h);
+    ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+    ctx.lineTo(x, y + r);
+    ctx.quadraticCurveTo(x, y, x + r, y);
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke();
 }
 
 function onWindowResize(event) {
