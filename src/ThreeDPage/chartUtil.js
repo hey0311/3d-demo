@@ -1,7 +1,7 @@
 /* eslint-disable */
 import echarts from 'echarts'
-import {getColor,chartClickFun,randomData,setWarning} from "./util"
-export const renderBarChart=(data)=>{
+import {getColor,randomData,setWarning} from "./util"
+export const renderBarChart=(data,threeConfig)=>{
     var echart_show_old=0;//0 温度 1 锯切
     var echart_show=0;//0 温度 1 锯切
     var reyaModelMap = [{
@@ -105,11 +105,12 @@ export const renderBarChart=(data)=>{
         }]
     };
     myChart.setOption(option);
-/*    myChart.on('click', function (params) {
-        chartClickFun(reyaModelMap,params)
-    });*/
+    myChart.on('click', function (params) {
+        // chartClickFun(reyaModelMap,params)
+        threeConfig.chartItemClickedFn(params.name);
+    });
 }
-export const renderLineChart=(data)=>{
+export const renderLineChart=(data,mes)=>{
     var echart_show_old=0;//0 温度 1 锯切
     var echart_show=0;//0 温度 1 锯切
     var reyaModelMap = [{
@@ -179,9 +180,9 @@ export const renderLineChart=(data)=>{
     };
     var selectMesName = '入口温度';
     var intervalTime = 1000;
-    var mesName = '入口温度';
+    // var mesName = '入口温度';
     var mesName_jq = '纵锯进给速度';
-    var mes = 'inTemp';
+    // var mes = 'inTemp';
     var mes_jq = 'rowGive';
     var stand={
         inTemp:120,
@@ -295,4 +296,26 @@ export const renderLineChart=(data)=>{
         }]
     };
     myChart.setOption(option);
+}
+function chartClickFun(map,params) {
+    var objName;
+    for (var j = 0; j < map.length; j++) {
+        if (params.name === map[j].mesName) {
+            objName = map[j].objName;
+            if(echart_show==0){
+                mes = map[j].mes;
+            }else{
+                mes_jq = map[j].mes;
+            }
+            showChildChart = true;
+            selectMesName = map[j].mesName;
+        }
+    }
+    if (obj) {
+        for (var i = 0; i < obj.children.length; i++) {
+            if (obj.children[i].name === objName) {
+                editor.focus(obj.children[i]);
+            }
+        }
+    }
 }

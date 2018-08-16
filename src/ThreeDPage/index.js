@@ -2,14 +2,53 @@ import React, {Component} from 'react';
 import './index.css';
 import * as threeUtil from "./threeUtil";
 import * as chartUtil from "./chartUtil"
-import {randomData,setWarning} from "./util"
+import {randomData, setWarning} from "./util"
 import _ from 'lodash'
 
 class ThreeDPage extends Component {
     constructor(p) {
         super(p);
         var now = new Date();
-        this.threeConfig={};
+        this.reyaModelMap = [{
+            objName: 'Obj3d66_582169_127_839',
+            mes: 'inTemp',
+            mesName: '入口温度'
+        }, {
+            objName: 'Obj3d66_582169_127_838',
+            mes: 'centerTemp',
+            mesName: '中部温度'
+        }, {
+            objName: 'Obj3d66_582169_127_837',
+            mes: 'outTemp',
+            mesName: '出口温度'
+        }];
+        this.threeConfig = {
+            //3d模型图的点击事件
+            objectSelectedFn: (obj) => {
+                //只能点击设备
+                if (_.map(this.reyaModelMap, 'objName').indexOf(obj.name) === -1) {
+                    return;
+                }
+                this.reyaModelMap.map((d) => {
+                    if (d.objName === obj.name) {
+                        this.setState({
+                            mes: d.mes
+                        })
+                    }
+                })
+                console.log(obj.name)
+            },
+            //柱形图点击事件的回调
+            chartItemClickedFn: (itemName) => {
+                var objName, map = this.reyaModelMap;
+                for (var j = 0; j < map.length; j++) {
+                    if (itemName === map[j].mesName) {
+                        objName = map[j].objName;
+                        this.focusObjByName(objName);
+                    }
+                }
+            }
+        };
         this.state = {
             data: {
                 inTemp: [{
@@ -36,20 +75,30 @@ class ThreeDPage extends Component {
                     ],
                     formatValue: Math.random() * 100
                 }]
+            },
+            mes: 'inTemp'
+        }
+    }
+
+    //根据模型名称来对焦
+    focusObjByName(objName) {
+        for (var i = 0; i < this.threeConfig.modelObj.children.length; i++) {
+            if (this.threeConfig.modelObj.children[i].name === objName) {
+                this.threeConfig.editor.focus(this.threeConfig.modelObj.children[i]);
             }
         }
     }
 
     componentDidMount() {
         threeUtil.render3d(this.threeConfig);
-        chartUtil.renderBarChart(this.state.data);
-        chartUtil.renderLineChart(this.state.data);
+        chartUtil.renderBarChart(this.state.data, this.threeConfig);
+        chartUtil.renderLineChart(this.state.data, this.state.mes);
         this.refreshChart();
     }
 
     componentDidUpdate() {
-        chartUtil.renderBarChart(this.state.data);
-        chartUtil.renderLineChart(this.state.data);
+        chartUtil.renderBarChart(this.state.data, this.threeConfig);
+        chartUtil.renderLineChart(this.state.data, this.state.mes);
     }
 
     refreshChart() {
@@ -71,33 +120,22 @@ class ThreeDPage extends Component {
             this.refresh3DModel();
         }, 1000)
     }
-    refresh3DModel(){
+
+    refresh3DModel() {
         if (this.threeConfig.editor.scene.children) {
-            let modelObj=this.threeConfig.modelObj;
-            var reyaModelMap = [{
-                objName: 'Obj3d66_582169_127_839',
-                mes: 'inTemp',
-                mesName: '入口温度'
-            }, {
-                objName: 'Obj3d66_582169_127_838',
-                mes: 'centerTemp',
-                mesName: '中部温度'
-            }, {
-                objName: 'Obj3d66_582169_127_837',
-                mes: 'outTemp',
-                mesName: '出口温度'
-            }];
-            for (var i = 0; i <modelObj.children.length; i++) {
-                for (var j = 0; j < reyaModelMap.length; j++) {
-                    if (modelObj.children[i].name === reyaModelMap[j].objName) {
-                        setWarning(modelObj.children[i], this.state.data[reyaModelMap[j].mes][this.state.data[reyaModelMap[j].mes].length - 1].formatValue);
+            let modelObj = this.threeConfig.modelObj;
+            for (var i = 0; i < modelObj.children.length; i++) {
+                for (var j = 0; j < this.reyaModelMap.length; j++) {
+                    if (modelObj.children[i].name === this.reyaModelMap[j].objName) {
+                        setWarning(modelObj.children[i],
+                            this.state.data[this.reyaModelMap[j].mes][this.state.data[this.reyaModelMap[j].mes].length - 1].formatValue);
                     }
                 }
-/*                for (var j = 0; j <jqModelMap.length; j++) {
-                    if (obj.children[i].name === jqModelMap[j].objName) {
-                        setWarning(obj.children[i], data_jq[jqModelMap[j].mes][data_jq[jqModelMap[j].mes].length - 1].formatValue);
-                    }
-                }*/
+                /*                for (var j = 0; j <jqModelMap.length; j++) {
+                                    if (obj.children[i].name === jqModelMap[j].objName) {
+                                        setWarning(obj.children[i], data_jq[jqModelMap[j].mes][data_jq[jqModelMap[j].mes].length - 1].formatValue);
+                                    }
+                                }*/
             }
         }
     }

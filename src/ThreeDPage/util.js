@@ -92,28 +92,6 @@ export function randomData(values, type) {
         formatValue: formatValue
     }
 }
-export function chartClickFun(map,params) {
-    var objName;
-    for (var j = 0; j < map.length; j++) {
-        if (params.name === map[j].mesName) {
-            objName = map[j].objName;
-            if(echart_show==0){
-                mes = map[j].mes;
-            }else{
-                mes_jq = map[j].mes;
-            }
-            showChildChart = true;
-            selectMesName = map[j].mesName;
-        }
-    }
-    if (obj) {
-        for (var i = 0; i < obj.children.length; i++) {
-            if (obj.children[i].name === objName) {
-                editor.focus(obj.children[i]);
-            }
-        }
-    }
-}
 export function getColor(value) {
     if (value <= 80) {
         return '#00acee';

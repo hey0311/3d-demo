@@ -1,32 +1,13 @@
 /* eslint-disable */
 import fileObj from '../res/fa1.obj';
 import fileMtl from '../res/fa1.mtl';
+
 var THREE = window.THREE;
-export const render3d=(threeConfig)=>{
-
-/*    function onWindowResize(event) {
-        editor.signals.windowResize.dispatch();
-    }*/
-
-    function readTextFile(file, callback) {
-        var rawFile = new XMLHttpRequest();
-        rawFile.overrideMimeType("text/plain");
-        rawFile.open("GET", file, true);
-        rawFile.onreadystatechange = function () {
-            if (rawFile.readyState === 4 && rawFile.status == "200") {
-                callback(rawFile.responseText);
-            }
-        };
-        rawFile.send(null);
-    }
-
+export const render3d = (threeConfig) => {
     window.URL = window.URL || window.webkitURL;
     window.BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder;
-    Number.prototype.format = function () {
-        return this.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
-    };
     var editor = new Editor();
-    threeConfig.editor=editor;
+    threeConfig.editor = editor;
     var viewport = new Viewport(editor);
     document.getElementById('three-container').appendChild(viewport.dom);
     var script = new Script(editor);
@@ -43,11 +24,7 @@ export const render3d=(threeConfig)=>{
 // document.getElementById('three-container').appendChild(modal.dom);
     var obj;
     editor.setTheme(editor.config.getKey('theme'));
-    console.log(editor)
-//加载文件
-    var texture = new THREE.Texture();
-    var loader = new THREE.ImageLoader();
-
+    console.log(editor);
     readTextFile(fileMtl, function (file) {
         var mtl = new THREE.MTLLoader().parse(file);
         mtl.preload();
@@ -56,53 +33,52 @@ export const render3d=(threeConfig)=>{
             objLoader.setMaterials(mtl);
             var object = objLoader.parse(file1);
             editor.execute(new AddObjectCommand(object));
-            threeConfig.modelObj=editor.scene.children[0];
-            // editor.focus(editor.scene.children[0].children[0]);
-            var devices=[
+            threeConfig.modelObj = editor.scene.children[0];
+            var devices = [
                 {
-                    text:'横锯回程',
-                    position:[-200,500,200],
-                    size:[280,120,280],
-                    fontSize:72
-                },{
-                    text:'横锯进给',
-                    position:[-200,500,-325],
-                    size:[280,120,280],
-                    fontSize:72
-                },{
-                    text:'纵锯回程',
-                    position:[-200,500,-850],
-                    size:[280,120,280],
-                    fontSize:72
-                },{
-                    text:'纵锯进给',
-                    position:[-200,500,-1375],
-                    size:[280,120,280],
-                    fontSize:72
+                    text: '横锯回程',
+                    position: [-200, 500, 200],
+                    size: [280, 120, 280],
+                    fontSize: 72
+                }, {
+                    text: '横锯进给',
+                    position: [-200, 500, -325],
+                    size: [280, 120, 280],
+                    fontSize: 72
+                }, {
+                    text: '纵锯回程',
+                    position: [-200, 500, -850],
+                    size: [280, 120, 280],
+                    fontSize: 72
+                }, {
+                    text: '纵锯进给',
+                    position: [-200, 500, -1375],
+                    size: [280, 120, 280],
+                    fontSize: 72
                 },
                 {
-                    text:'出口',
-                    position:[800,300,-300],
-                    size:[180,120,180],
-                    fontSize:120
-                },{
-                    text:'中部',
-                    position:[800,300,-720],
-                    size:[180,120,180],
-                    fontSize:120
-                },{
-                    text:'入口',
-                    position:[800,300,-1120],
-                    size:[180,120,180],
-                    fontSize:120
+                    text: '出口',
+                    position: [800, 300, -300],
+                    size: [180, 120, 180],
+                    fontSize: 120
+                }, {
+                    text: '中部',
+                    position: [800, 300, -720],
+                    size: [180, 120, 180],
+                    fontSize: 120
+                }, {
+                    text: '入口',
+                    position: [800, 300, -1120],
+                    size: [180, 120, 180],
+                    fontSize: 120
                 }
             ];
-            var sprite=null;
-            for(var i=0;i<devices.length;i++){
-                sprite=createSpriteText(devices[i].position,
-                    devices[i].text,devices[i].size,
+            var sprite = null;
+            for (var i = 0; i < devices.length; i++) {
+                sprite = createSpriteText(devices[i].position,
+                    devices[i].text, devices[i].size,
                     devices[i].fontSize,
-                    devices[i].size[0]<200?true:false);
+                    devices[i].size[0] < 200 ? true : false);
                 editor.scene.add(sprite);
             }
 
@@ -142,52 +118,44 @@ export const render3d=(threeConfig)=>{
             editor.scene.add(ambientLight);
 
             var spotLight = new THREE.SpotLight(0xffffff);
-            var spotLight1 = new THREE.SpotLight(0xffffff);
             spotLight.position.set(box.min.x, box.min.y, box.min.z);
-            spotLight1.position.set(box.max.x, box.max.y, box.max.z);
             editor.scene.add(spotLight);
+
             var pointColor = "#ffffff";
-            var directionLight = new THREE.DirectionalLight(pointColor);
-            var directionLight1 = new THREE.DirectionalLight(pointColor);
             var directionLight2 = new THREE.DirectionalLight(pointColor);
             var directionLight3 = new THREE.DirectionalLight(pointColor);
-            var directionLight4 = new THREE.DirectionalLight(pointColor);
-            directionLight.position.set(box.min.x, box.min.y, box.min.z);
-            directionLight1.position.set(box.max.x, box.max.y, box.max.z);
-            directionLight2.position.set(box.max.x - 800, box.max.y+2000, box.max.z);
-            directionLight3.position.set(box.max.x + 800, box.max.y+2000, box.max.z);
+            directionLight2.position.set(box.max.x - 800, box.max.y + 2000, box.max.z);
+            directionLight3.position.set(box.max.x + 800, box.max.y + 2000, box.max.z);
 
-            /*                editor.scene.add(directionLight);
-                            editor.scene.add(directionLight1);*/
             editor.scene.add(directionLight2);
             editor.scene.add(directionLight3);
-            editor.scene.add(directionLight4);
-            editor.scene.background.r=8/255;
-            editor.scene.background.g=12/255;
-            editor.scene.background.b=14/255;
+            //设置背景
+            editor.scene.background.r = 8 / 255;
+            editor.scene.background.g = 12 / 255;
+            editor.scene.background.b = 14 / 255;
             //天空盒
             var path = "images/";//设置路径
-            var directions  = ["posx", "negx", "posy", "negy", "posz", "negz"];//获取对象
+            var directions = ["posx", "negx", "posy", "negy", "posz", "negz"];//获取对象
             var format = ".jpg";//格式
 
-            for(var i =0 ;i<editor.scene.children.length;i++){
-                editor.scene.children[i].scale.x=0.01;
-                editor.scene.children[i].scale.y=0.01;
-                editor.scene.children[i].scale.z=0.01;
+            for (var i = 0; i < editor.scene.children.length; i++) {
+                editor.scene.children[i].scale.x = 0.01;
+                editor.scene.children[i].scale.y = 0.01;
+                editor.scene.children[i].scale.z = 0.01;
             }
 
             //创建盒子，并设置盒子的大小为( 5000, 5000, 5000 )
-            var skyGeometry = new THREE.BoxGeometry( 5000, 5000, 5000 );
+            var skyGeometry = new THREE.BoxGeometry(5000, 5000, 5000);
             //设置盒子材质
             var materialArray = [];
             for (var i = 0; i < 6; i++)
-                materialArray.push( new THREE.MeshBasicMaterial({
-                    map: THREE.ImageUtils.loadTexture( path + directions[i] + format ),//将图片纹理贴上
+                materialArray.push(new THREE.MeshBasicMaterial({
+                    map: THREE.ImageUtils.loadTexture(path + directions[i] + format),//将图片纹理贴上
                     side: THREE.BackSide/*镜像翻转，如果设置镜像翻转，那么只会看到黑漆漆的一片，因为你身处在盒子的内部，所以一定要设置镜像翻转。*/
                 }));
-            var skyMaterial = new THREE.MeshFaceMaterial( materialArray );
-            var skyBox = new THREE.Mesh( skyGeometry, skyMaterial );//创建一个完整的天空盒，填入几何模型和材质的参数
-            editor.scene.add( skyBox );//在场景中加入天空盒
+            var skyMaterial = new THREE.MeshFaceMaterial(materialArray);
+            var skyBox = new THREE.Mesh(skyGeometry, skyMaterial);//创建一个完整的天空盒，填入几何模型和材质的参数
+            editor.scene.add(skyBox);//在场景中加入天空盒
 
 
             editor.select(null)
@@ -206,42 +174,38 @@ export const render3d=(threeConfig)=>{
                     editor.scene.add(sphereMesh);*/
         })
     });
-    function createSpriteText(pos,text,size,fontSize,short){
-        //先用画布将文字画出
-        var canvas = document.createElement("canvas");
-        var ctx = canvas.getContext("2d");
-        ctx.fillStyle = 'rgb(9,16,45,0.8)';
-        ctx.strokeStyle= '#016487';
-        ctx.lineWidth=15;
-        ctx.fillRect(0, 0, canvas.width-5, canvas.height-5);
-        ctx.strokeRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = "#16ffff";
-        ctx.font = "Bold "+fontSize/10+"px Arial";
-        ctx.lineWidth = 8;
-        if(short){
-            ctx.fillText(text,25,114);
-        }else{
-            ctx.fillText(text,4,104);
-        }
-        var texture = new THREE.Texture(canvas);
-        texture.needsUpdate = true;
-
-        //使用Sprite显示文字
-        var material = new THREE.SpriteMaterial({map:texture});
-        var textObj = new THREE.Sprite(material);
-        textObj.name='test';
-        textObj.scale.set(size[0]/1000, size[1]/1000, size[2]/1000);
-        textObj.position.set(pos[0]/1000,pos[1]/1000,pos[2]/1000);
-        return textObj;
-    }
 //避免bug
 // window.addEventListener('resize', onWindowResize, false);
 //     onWindowResize();
-/*    editor.signals.objectSelected.add(function (obj) {
+    /*    editor.signals.objectSelected.add(function (obj) {
+            if (!obj) {
+                return
+            }
+            for (var i = 0; i < reyaModelMap.length; i++) {
+                if (reyaModelMap[i].objName === obj.name) {
+                    echart_show = 0;
+                    objName = reyaModelMap[i].objName;
+                    mes = reyaModelMap[i].mes;
+                    selectMesName = reyaModelMap[i].mesName;
+                }
+            }
+            for (var i = 0; i < jqModelMap.length; i++) {
+                if (jqModelMap[i].objName === obj.name) {
+                    echart_show = 1;
+                    objName = jqModelMap[i].objName;
+                    mes_jq = jqModelMap[i].mes;
+                    selectMesName = jqModelMap[i].mesName;
+                }
+            }
+        });*/
+    window.addEventListener('resize', onWindowResize, false);
+    onWindowResize();
+    editor.signals.objectSelected.add(function (obj) {
         if (!obj) {
             return
         }
-        for (var i = 0; i < reyaModelMap.length; i++) {
+        threeConfig.objectSelectedFn(obj);
+/*        for (var i = 0; i < reyaModelMap.length; i++) {
             if (reyaModelMap[i].objName === obj.name) {
                 echart_show = 0;
                 objName = reyaModelMap[i].objName;
@@ -256,6 +220,54 @@ export const render3d=(threeConfig)=>{
                 mes_jq = jqModelMap[i].mes;
                 selectMesName = jqModelMap[i].mesName;
             }
-        }
-    });*/
+        }*/
+    });
 }
+
+function readTextFile(file, callback) {
+    var rawFile = new XMLHttpRequest();
+    rawFile.overrideMimeType("text/plain");
+    rawFile.open("GET", file, true);
+    rawFile.onreadystatechange = function () {
+        if (rawFile.readyState === 4 && rawFile.status == "200") {
+            callback(rawFile.responseText);
+        }
+    };
+    rawFile.send(null);
+}
+
+function createSpriteText(pos, text, size, fontSize, short) {
+    //先用画布将文字画出
+    var canvas = document.createElement("canvas");
+    var ctx = canvas.getContext("2d");
+    ctx.fillStyle = 'rgb(9,16,45,0.8)';
+    ctx.strokeStyle = '#016487';
+    ctx.lineWidth = 15;
+    ctx.fillRect(0, 0, canvas.width - 5, canvas.height - 5);
+    ctx.strokeRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#16ffff";
+    ctx.font = "Bold " + fontSize / 10 + "px Arial";
+    ctx.lineWidth = 8;
+    if (short) {
+        ctx.fillText(text, 25, 114);
+    } else {
+        ctx.fillText(text, 4, 104);
+    }
+    var texture = new THREE.Texture(canvas);
+    texture.needsUpdate = true;
+
+    //使用Sprite显示文字
+    var material = new THREE.SpriteMaterial({map: texture});
+    var textObj = new THREE.Sprite(material);
+    textObj.name = 'test';
+    textObj.scale.set(size[0] / 1000, size[1] / 1000, size[2] / 1000);
+    textObj.position.set(pos[0] / 1000, pos[1] / 1000, pos[2] / 1000);
+    return textObj;
+}
+
+function onWindowResize(event) {
+    editor.signals.windowResize.dispatch();
+}
+Number.prototype.format = function () {
+    return this.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+};
