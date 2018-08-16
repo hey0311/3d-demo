@@ -1,0 +1,105 @@
+#main{
+    width: 100%;
+    height:100%;
+    background: url('../images/mapback.jpg') no-repeat 0 0;
+    background-size: 100% 100%;
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+.mini{
+    border: 1.8px solid #0984ad;
+    border-top-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background: rgba(36, 65, 97, 0.5);
+    position: absolute;
+    width: 406px;
+    height: 306px;
+    left: 1480px;
+}
+.mini p{
+    font-size: 20px;
+    color: white;
+    padding: 2px 5px;
+}
+.mini .inner{
+    width: calc( 100% - 20px );
+    padding: 10px;
+    color: white;
+    height: calc( 100% - 44px );
+}
+.mini .inner .detail{
+    display: block;
+    margin: 32px 0px;
+    font-size: 17px;
+}
+.mini .inner .detail .leftDetail{
+    display:inline-block;
+    width:55%;
+    margin:0px 0px;
+}
+.mini .inner .detail .rightDetail{
+    display:inline-block;
+    width:40%;
+    margin:0px 0px;
+}
+.mini .inner .centerDetail{
+    display: inline-block;
+    width: 80%;
+    margin: 12px 15%;
+    font-size: 17px;
+}
+.mini-bottom{
+    height: 100%;
+    width: 300px;
+    margin:0 15px;
+}
+.mini-bottom .progress{
+    width:100%;
+    font-size: 12px;
+}
+.mini-bottom .progress .font .fontPer{
+    float:right;
+    font-size: 15px;
+}
+.mini-bottom .progress .font .fontName{
+    font-size: 15px;
+}
+.mini-bottom .progress .over{
+    height: 13px;
+    background: white;
+    display: block;
+    padding: 0;
+    margin: 0;
+    border-radius: 10px;
+}
+.mini-bottom .progress .all{
+    height: 13px;
+    background: #00ffdc;
+    transition:1s ease-in-out;
+    -webkit-transition:1s ease-in-out;
+    -moz-transition:1s ease-in-out;
+    -o-transition:1s ease-in-out;
+    border-radius: 10px;
+    z-index: 1;
+    display: block;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    top: -13px;
+}
+.mini-bottom .detail{
+    color: #00ffdc;
+    font-size: 16px;
+    padding-top: 20px;
+}
+#demo1 table tr:hover{
+    cursor:pointer;
+    background-color: rgba(0, 138, 255, 0.3) !important;
+}
+.mini-bottom .info-detail{
+    color: white;
+    font-size: 16px;
+    padding-top: 15px;
+}
