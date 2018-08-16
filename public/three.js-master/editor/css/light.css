@@ -1,4 +1,4 @@
-button {
+#three-container button {
 	color: #555;
 	background-color: #ddd;
 	border: 0px;
@@ -8,20 +8,20 @@ button {
 	outline: none;
 }
 
-	button:hover {
+	#three-container button:hover {
 		background-color: #fff;
 	}
 
-	button.selected {
+	#three-container button.selected {
 		background-color: #fff;
 	}
 
-input, textarea {
+#three-container input, textarea {
 	border: 1px solid transparent;
 	color: #444;
 }
 
-input.Number {
+#three-container input.Number {
 	color: #08f!important;
 	font-size: 12px;
 	border: 0px;
@@ -29,7 +29,7 @@ input.Number {
 	cursor: col-resize;
 }
 
-select {
+#three-container select {
 	color: #666;
 	background-color: #ddd;
 	border: 0px;
@@ -38,13 +38,13 @@ select {
 	outline: none;
 }
 
-	select:hover {
+	#three-container select:hover {
 		background-color: #fff;
 	}
 
 /* UI */
 
-#viewport {
+#three-container #viewport {
 	position: absolute;
 /*	top: 32px;
 	left: 0;
@@ -56,12 +56,12 @@ select {
 	bottom: 0;
 }
 
-	#viewport #info {
+	#three-container #viewport #info {
 		text-shadow: 1px 1px 0 rgba(0,0,0,0.25);
 		pointer-events: none;
 	}
 
-#script {
+#three-container #script {
 	position: absolute;
 	top: 32px;
 	left: 0;
@@ -70,7 +70,7 @@ select {
 	opacity: 0.9;
 }
 
-#player {
+#three-container #player {
 	position: absolute;
 	top: 32px;
 	left: 0;
@@ -78,7 +78,7 @@ select {
 	bottom: 32px;
 }
 
-#menubar {
+#three-container #menubar {
 	position: absolute;
 	width: 100%;
 	height: 32px;
@@ -89,27 +89,27 @@ select {
 	top: 0;
 }
 
-	#menubar .menu {
+	#three-container #menubar .menu {
 		float: left;
 		cursor: pointer;
 		padding-right: 8px;
 	}
 
-	#menubar .menu.right {
+	#three-container #menubar .menu.right {
 		float: right;
 		cursor: auto;
 		padding-right: 0;
 		text-align: right;
 	}
 
-		#menubar .menu .title {
+		#three-container #menubar .menu .title {
 			display: inline-block;
 			color: #888;
 			margin: 0;
 			padding: 8px;
 		}
 
-		#menubar .menu .options {
+		#three-container #menubar .menu .options {
 			position: fixed;
 			display: none;
 			padding: 5px 0;
@@ -119,39 +119,39 @@ select {
 			overflow: auto;
 		}
 
-		#menubar .menu:hover .options {
+		#three-container #menubar .menu:hover .options {
 			display: block;
 		}
 
-			#menubar .menu .options hr {
+			#three-container #menubar .menu .options hr {
 				border-color: #ddd;
 			}
 
-			#menubar .menu .options .option {
+			#three-container #menubar .menu .options .option {
 				color: #666;
 				background-color: transparent;
 				padding: 5px 10px;
 				margin: 0 !important;
 			}
 
-				#menubar .menu .options .option:hover {
+				#three-container #menubar .menu .options .option:hover {
 					color: #fff;
 					background-color: #08f;
 				}
 
-				#menubar .menu .options .option:active {
+				#three-container #menubar .menu .options .option:active {
 					color: #666;
 					background: transparent;
 				}
 
-		#menubar .menu .options .inactive {
+		#three-container #menubar .menu .options .inactive {
 			color: #bbb;
 			background-color: transparent;
 			padding: 5px 10px;
 			margin: 0 !important;
 		}
 
-#sidebar {
+#three-container #sidebar {
 	position: absolute;
 	right: 0;
 	top: 32px;
@@ -161,42 +161,42 @@ select {
 	overflow: auto;
 }
 
-	#sidebar * {
+	#three-container #sidebar * {
 		vertical-align: middle;
 	}
 
-	#sidebar .Panel {
+	#three-container #sidebar .Panel {
 		color: #888;
 		padding: 10px;
 		border-top: 1px solid #ccc;
 	}
 
-	#sidebar .Panel.collapsed {
+	#three-container #sidebar .Panel.collapsed {
 		margin-bottom: 0;
 	}
 
-	#sidebar .Row {
+	#three-container #sidebar .Row {
 		min-height: 20px;
 		margin-bottom: 10px;
 	}
 
-#tabs {
+#three-container #tabs {
 	background-color: #ddd;
 	border-top: 1px solid #ccc;
 }
 
-	#tabs span {
+	#three-container #tabs span {
 		color: #aaa;
 		border-right: 1px solid #ccc;
 		padding: 10px;
 	}
 
-	#tabs span.selected {
+	#three-container #tabs span.selected {
 		color: #888;
 		background-color: #eee;
 	}
 
-#toolbar {
+#three-container #toolbar {
 	position: absolute;
 	left: 0;
 	right: 300px;
@@ -206,20 +206,20 @@ select {
 	color: #333;
 }
 
-	#toolbar * {
+	#three-container #toolbar * {
 		vertical-align: middle;
 	}
 
-	#toolbar .Panel {
+	#three-container #toolbar .Panel {
 		padding: 4px;
 		color: #888;
 	}
 
-	#toolbar button {
+	#three-container #toolbar button {
 		margin-right: 6px;
 	}
 
-.Outliner {
+#three-container .Outliner {
 	color: #444;
 	background-color: #fff;
 	padding: 0;
@@ -231,16 +231,16 @@ select {
 	outline: none !important;
 }
 
-	.Outliner .option {
+	#three-container .Outliner .option {
 		padding: 4px;
 		color: #666;
 		white-space: nowrap;
 	}
 
-	.Outliner .option:hover {
+	#three-container .Outliner .option:hover {
 		background-color: rgba(0,0,0,0.02);
 	}
 
-	.Outliner .option.active {
+	#three-container .Outliner .option.active {
 		background-color: rgba(0,0,0,0.04);
 	}

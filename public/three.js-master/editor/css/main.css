@@ -1,43 +1,43 @@
-body {
+/*#three-container body {
 	font-family: Helvetica, Arial, sans-serif;
 	font-size: 14px;
 	margin: 0;
 	overflow: hidden;
-}
-#info-container{
+}*/
+/*#info-container{
 	overflow: auto;
 	font-size: 12px;
 }
 #info-container p{
 	margin: 3px;
-}
-hr {
+}*/
+#three-container hr {
 	border: 0;
 	border-top: 1px solid #ccc;
 }
 
-button {
+#three-container button {
 	position: relative;
 }
 
-textarea {
+#three-container textarea {
 	tab-size: 4;
 	white-space: pre;
 	word-wrap: normal;
 }
 
-	textarea.success {
+	#three-container textarea.success {
 		border-color: #8b8 !important;
 	}
 
-	textarea.fail {
+	#three-container textarea.fail {
 		border-color: #f00 !important;
 		background-color: rgba(255,0,0,0.05);
 	}
 
-textarea, input { outline: none; } /* osx */
+#three-container textarea, input { outline: none; } /* osx */
 
-.Panel {
+#three-container .Panel {
 	-moz-user-select: none;
 	-webkit-user-select: none;
 	-ms-user-select: none;
@@ -49,7 +49,7 @@ textarea, input { outline: none; } /* osx */
 
 /* CodeMirror */
 
-.CodeMirror {
+#three-container .CodeMirror {
 
 	position: absolute !important;
 	top: 37px;
@@ -58,13 +58,13 @@ textarea, input { outline: none; } /* osx */
 
 }
 
-	.CodeMirror .errorLine {
+	#three-container .CodeMirror .errorLine {
 
 		background: rgba(255,0,0,0.25);
 
 	}
 
-	.CodeMirror .esprima-error {
+	#three-container .CodeMirror .esprima-error {
 
 		color: #f00;
 		text-align: right;
@@ -74,96 +74,96 @@ textarea, input { outline: none; } /* osx */
 
 /* outliner */
 
-#outliner .option {
+#three-container #outliner .option {
 
 	border: 1px solid transparent;
 }
 
-#outliner .option.drag {
+#three-container #outliner .option.drag {
 
 	border: 1px dashed #999;
 
 }
 
-#outliner .option.dragTop {
+#three-container #outliner .option.dragTop {
 
 	border-top: 1px dashed #999;
 
 }
 
-#outliner .option.dragBottom {
+#three-container #outliner .option.dragBottom {
 
 	border-bottom: 1px dashed #999;
 
 }
 
-#outliner .type {
+#three-container #outliner .type {
 	position:relative;
 	top:-2px;
 	padding: 0 2px;
 	color: #ddd;
 }
 
-#outliner .type:after {
+#three-container #outliner .type:after {
 	content: '■';
 }
 
-#outliner .Scene {
+#three-container #outliner .Scene {
 	color: #ccccff;
 }
 
-#outliner .Object3D {
+#three-container #outliner .Object3D {
 	color: #aaaaee;
 }
 
-#outliner .Mesh {
+#three-container #outliner .Mesh {
 	color: #8888ee;
 }
 
-#outliner .Line {
+#three-container #outliner .Line {
 	color: #88ee88;
 }
 
-#outliner .LineSegments {
+#three-container #outliner .LineSegments {
 	color: #88ee88;
 }
 
-#outliner .Points {
+#three-container #outliner .Points {
 	color: #ee8888;
 }
 
 /* */
 
-#outliner .PointLight {
+#three-container #outliner .PointLight {
 	color: #dddd00;
 }
 
 /* */
 
-#outliner .Geometry {
+#three-container #outliner .Geometry {
 	color: #88ff88;
 }
 
-#outliner .BoxGeometry {
+#three-container #outliner .BoxGeometry {
 	color: #bbeebb;
 }
 
-#outliner .TorusGeometry {
+#three-container #outliner .TorusGeometry {
 	color: #aaeeaa;
 }
 
 /* */
 
-#outliner .Material {
+#three-container #outliner .Material {
 	color: #ff8888;
 }
 
-#outliner .MeshPhongMaterial {
+#three-container #outliner .MeshPhongMaterial {
 	color: #ffaa88;
 }
 
 /* */
 
-#outliner .Script:after {
+#three-container #outliner .Script:after {
 	content: '{...}' /* ❮/❯ */
 }

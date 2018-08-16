@@ -100,8 +100,9 @@ Editor.prototype = {
 
 	setTheme: function ( value ) {
 
-		document.getElementById( 'theme' ).href = value;
+		// document.getElementById( 'theme' ).href = value;
 
+        document.getElementById( 'theme' ).href = 'three.js-master/editor/'+value;
 		this.signals.themeChanged.dispatch( value );
 
 	},

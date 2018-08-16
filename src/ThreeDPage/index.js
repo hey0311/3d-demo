@@ -62,6 +62,7 @@ class ThreeDPage extends Component {
                     if (itemName === map[j].mesName) {
                         objName = map[j].objName;
                         this.focusObjByName(objName);
+                        return;
                     }
                 }
                 map=this.jqModelMap;
@@ -69,6 +70,7 @@ class ThreeDPage extends Component {
                     if (itemName === map[j].mesName) {
                         objName = map[j].objName;
                         this.focusObjByName(objName);
+                        return;
                     }
                 }
             }
