@@ -1,51 +1,70 @@
 /* eslint-disable */
 import echarts from 'echarts'
 import {getColor} from "./util"
-const axisFontSize=16;
-const chartTitleSize=20;
-const chartBkColor='rgba(128, 128, 128, 0)';
-export const renderBarChart=(myChart,data,threeConfig,modelMap,title)=>{
+
+const axisFontSize = 16;
+const chartTitleSize = 20;
+const chartBkColor = 'rgba(128, 128, 128, 0)';
+export const renderBarChart = (myChart, data, threeConfig, modelMap, title) => {
     // var myChart = echarts.init(document.getElementById(chartId));
-    let sdata=[],xAxisData=[];
-    for(let key in data){
+    let sdata = [], xAxisData = [];
+    for (let key in data) {
         sdata.push({
-            value:data[key][data[key].length-1].value[1],
-            itemStyle:{
-                normal:{
-                    color:getColor(data[key][data[key].length-1].formatValue)
+            value: data[key][data[key].length - 1].value[1],
+            itemStyle: {
+                normal: {
+                    barBorderRadius: [15, 15, 0, 0],
+                    color: {
+                        "type": "linear",
+                        "x": 0,
+                        "y": 0,
+                        "x2": 0,
+                        "y2": 1,
+                        "colorStops": [
+                            {
+                                "offset": 0,
+                                color: getColor(data[key][data[key].length - 1].formatValue)
+                            },
+                            {
+                                "offset": 1,
+                                "color": "rgba(0,133,245,0.7)"
+                            }
+                        ],
+                        "globalCoord": false
+                    }
                 }
             }
         });
-        modelMap.map((m)=>{
-            if(m.mes===key){
+        modelMap.map((m) => {
+            if (m.mes === key) {
                 xAxisData.push(m.mesName)
             }
         })
     }
 
     var option = {
-        backgroundColor:chartBkColor,
+        backgroundColor: chartBkColor,
         title: {
             text: title,
-            textStyle:{
-                fontSize:chartTitleSize,
-                color:'#fff'
+            textStyle: {
+                fontSize: chartTitleSize,
+                color: '#fff'
             }
         },
-        grid:{
-            left:'15%'
+        grid: {
+            left: '15%'
         },
         xAxis: {
             type: 'category',
             data: xAxisData,
-            axisLabel:{
-                fontSize:axisFontSize,
-                interval:0,
-                color:'#fff'
+            axisLabel: {
+                fontSize: axisFontSize,
+                interval: 0,
+                color: '#fff'
             },
-            axisLine:{
-                lineStyle:{
-                    color:'#fff'
+            axisLine: {
+                lineStyle: {
+                    color: '#fff'
                 }
             }
         },
@@ -53,15 +72,15 @@ export const renderBarChart=(myChart,data,threeConfig,modelMap,title)=>{
             type: 'value',
             axisLabel: {
                 formatter: '{value}',
-                fontSize:axisFontSize,
-                color:'#fff'
+                fontSize: axisFontSize,
+                color: '#fff'
             },
-            splitLine:{
-                show:false
+            splitLine: {
+                show: false
             },
-            axisLine:{
-                lineStyle:{
-                    color:'#fff'
+            axisLine: {
+                lineStyle: {
+                    color: '#fff'
                 }
             }
         },
@@ -72,19 +91,19 @@ export const renderBarChart=(myChart,data,threeConfig,modelMap,title)=>{
     };
     myChart.setOption(option);
 }
-export const renderLineChart=(myChart,data,mes,modelMap,title,stand)=>{
+export const renderLineChart = (myChart, data, mes, modelMap, title, stand) => {
     // var myChart = echarts.init(document.getElementById(chartId));
     var option = {
-        backgroundColor:chartBkColor,
+        backgroundColor: chartBkColor,
         title: {
             text: title,
-            textStyle:{
-                fontSize:chartTitleSize,
-                color:'#fff'
+            textStyle: {
+                fontSize: chartTitleSize,
+                color: '#fff'
             }
         },
-        grid:{
-            left:'15%'
+        grid: {
+            left: '15%'
         },
         tooltip: {
             trigger: 'axis',
@@ -102,12 +121,12 @@ export const renderLineChart=(myChart,data,mes,modelMap,title,stand)=>{
             splitLine: {
                 show: false
             },
-            axisLabel:{
-                fontSize:axisFontSize
+            axisLabel: {
+                fontSize: axisFontSize
             },
-            axisLine:{
-                lineStyle:{
-                    color:'#fff'
+            axisLine: {
+                lineStyle: {
+                    color: '#fff'
                 }
             }
         },
@@ -119,38 +138,38 @@ export const renderLineChart=(myChart,data,mes,modelMap,title,stand)=>{
             },
             axisLabel: {
                 formatter: '{value}',
-                fontSize:axisFontSize,
-                color:'#fff'
+                fontSize: axisFontSize,
+                color: '#fff'
             },
-            axisLine:{
-                lineStyle:{
-                    color:'#fff'
+            axisLine: {
+                lineStyle: {
+                    color: '#fff'
                 }
             }
         },
         visualMap: {
             top: 10,
             right: 10,
-            textGap:5,
-            itemWidth:15,
-            show:true,
-            textStyle:{
-                color:'#fff'
+            textGap: 5,
+            itemWidth: 15,
+            show: true,
+            textStyle: {
+                color: '#fff'
             },
-            orient:'horizontal',
-            left:'center',
+            orient: 'horizontal',
+            left: 'center',
             pieces: [
                 {
                     gt: 0,
-                    lte: 100,
+                    lte: stand[mes] * 0.8,
                     color: 'lightskyblue'
                 }, {
-                    gt: 100,
-                    lte: 120,
+                    gt: stand[mes] * 0.8,
+                    lte: stand[mes],
                     color: '#ffff00'
                 },
                 {
-                    gt: 120,
+                    gt: stand[mes],
                     color: '#ff0000'
                 }
             ],
@@ -163,7 +182,7 @@ export const renderLineChart=(myChart,data,mes,modelMap,title,stand)=>{
             markLine: {
                 data: [{
                     name: '标准值',
-                    yAxis:stand[mes],
+                    yAxis: stand[mes],
                     label: {
                         show: true,
                         position: 'end'

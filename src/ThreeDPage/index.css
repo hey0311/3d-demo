@@ -32,12 +32,12 @@
 #goto-main {
     width: 150px;
     height: 40px;
-    background:#1adad9;
+    background: #1adad9;
     border-radius: 5px;
     font-size: 20px;
     color: #000;
     position: absolute;
-    bottom:4%;
+    bottom: 4%;
     right: 8%;
     font-weight: bold;
 }
@@ -64,10 +64,14 @@ h3 {
     padding-left: 5px;
     border: none;
     background: url("../res/chartBk.png");
-    background-size: 119% 188%;
-    background-position: 54% -164%;
+    background-size: 118% 193%;
+    background-position: 51% -159%;
     overflow: hidden;
     position: absolute;
     height: 30%;
     width: 20%;
+    padding-bottom: 12px;
+    background-clip: content-box;
+    background-color: #070b0c;
+    border-radius: 20px;
 }

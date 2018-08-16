@@ -8,6 +8,21 @@ import worldMap from "../res/world.json"
 import './index.css';
 
 class MapPage extends Component {
+    componentWillReceiveProps(p){
+        if(!p.hide){
+            this.resizeAfterUpdate=true;
+        }
+    }
+    componentDidUpdate(){
+        if(this.resizeAfterUpdate){
+            var miniChart = echarts.init(document.getElementById('mini-chart'));
+            miniChart.resize();
+            var myChart_mainpage = echarts.init(document.getElementById('main'));
+            myChart_mainpage.resize();
+            this.resizeAfterUpdate=false;
+        }
+
+    }
     componentDidMount(){
 
         echarts.registerMap('world', worldMap);
@@ -707,14 +722,13 @@ class MapPage extends Component {
         }
         createTableListener();
 
-        window.onresize = function(){
+        window.onresize =()=>{
             // var winHeight = document.documentElement.clientHeight;
             // var winWidth = document.documentElement.clientWidth;
             // document.getElementById('selfChartMain').style.width = winWidth;
             // document.getElementById('selfChartMain').style.height = winHeight;
             miniChart.resize();
             myChart_mainpage.resize();
-            console.log('resized')
         };
 /*        var speed = 50;
         var demo2=document.getElementById('demo2');
@@ -802,16 +816,16 @@ class MapPage extends Component {
                             <div className="table-header-div">
                                 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                                     <tr style={{backgroundColor: 'rgba(0, 138, 255, 0.3) !important',height: '28px'}}>
-                                        <td width="20%" align="center">订单号
-                                        </td>
-                                        <td width="20%" align="center">客户
-                                        </td>
-                                        <td width="20%" align="center">产品型号
-                                        </td>
-                                        <td width="20%" align="center">生产基地
-                                        </td>
-                                        <td width="20%" align="center">状态
-                                        </td>
+                                        <th width="20%" align="center">订单号
+                                        </th>
+                                        <th width="20%" align="center">客户
+                                        </th>
+                                        <th width="20%" align="center">产品型号
+                                        </th>
+                                        <th width="20%" align="center">生产基地
+                                        </th>
+                                        <th width="20%" align="center">状态
+                                        </th>
                                 </tr>
                             </table>
                         </div>
