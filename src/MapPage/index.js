@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import bc from '../images/bc.jpg';
+import jj from '../images/jj.jpg';
+import foreast from '../images/foreast.jpg';
+
 import echarts from 'echarts'
 import worldMap from "../res/world.json"
 import './index.css';
@@ -341,9 +345,9 @@ class MapPage extends Component {
 
         var getAttSysbol = function(name){
             if(name === '福建'){
-                return 'image://img/bc.jpg';
+                return 'image://'+bc;
             }else{
-                return 'image://img/jj.jpg';
+                return 'image://'+jj;
             }
         }
 
@@ -422,7 +426,7 @@ class MapPage extends Component {
                             show: true
                         }
                     },
-                    symbol: 'image://img/foreast.jpg',
+                    symbol: 'image://'+foreast,
                     symbolSize: function(val) {
                         return 4 + val[2] / 1000; //圆环大小
                     },
@@ -503,21 +507,21 @@ class MapPage extends Component {
                 data:[
                     {
                         name:'板材生产',
-                        icon:'image://img/bc.jpg',
+                        icon:'image://'+bc,
                         textStyle: {
                             color: 'white',
                             fontSize:17
                         }
                     },{
                         name:'家居生产',
-                        icon:'image://img/jj.jpg',
+                        icon:'image://'+jj,
                         textStyle: {
                             color: 'white',
                             fontSize:17
                         }
                     },{
                         name:'森林',
-                        icon:'image://img/foreast.jpg',
+                        icon:'image://'+foreast,
                         textStyle: {
                             color: 'white',
                             fontSize:17
@@ -712,6 +716,26 @@ class MapPage extends Component {
             myChart_mainpage.resize();
             console.log('resized')
         };
+/*        var speed = 50;
+        var demo2=document.getElementById('demo2');
+        var demo1=document.getElementById('demo1');
+        demo2.innerHTML = demo1.innerHTML;
+        function Marquee() {
+            if (demo2.offsetTop - demo.scrollTop <= 0) {
+                demo.scrollTop -= demo1.offsetHeight;
+            } else {
+                demo.scrollTop++;
+            }
+        }
+        var MyMar = setInterval(Marquee, speed);
+
+        demo.onmouseover = function() {
+            clearInterval(MyMar);
+        }
+
+        demo.onmouseout = function() {
+            MyMar = setInterval(Marquee, speed);
+        }*/
     }
     render() {
         return (

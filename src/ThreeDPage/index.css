@@ -48,6 +48,7 @@ h1 {
     position: absolute;
     top: 20px;
     margin: 0 auto;
+    text-align: center;
 }
 
 h3 {
@@ -56,6 +57,7 @@ h3 {
     position: absolute;
     top: 60px;
     margin: 0 auto;
+    text-align: center;
 }
 
 .chart-container {
