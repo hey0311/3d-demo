@@ -42,12 +42,13 @@ class ThreeDPage extends Component {
     componentDidMount() {
         threeUtil.render3d();
         chartUtil.renderBarChart(this.state.data);
-        // chartUtil.renderLineChart();
+        chartUtil.renderLineChart(this.state.data);
         this.refreshChart();
     }
 
     componentDidUpdate() {
         chartUtil.renderBarChart(this.state.data);
+        chartUtil.renderLineChart(this.state.data);
     }
 
     refreshChart() {
@@ -65,6 +66,7 @@ class ThreeDPage extends Component {
                 data.outTemp = data.outTemp.slice(1, data.outTemp.length);
             }
             data.outTemp.push(randomData(data.outTemp, 'outTemp'));
+            console.log(data.inTemp)
             this.setState({data})
         }, 1000)
     }

@@ -30,7 +30,7 @@ var growItem={
     rowBack:0.7
 };
 export function randomData(values, type) {
-    var now = new Date(+now + 1000);
+    var now = new Date();
     var random = Math.random();
     var value = 0;
     var standard,up,down;
@@ -84,7 +84,7 @@ export function randomData(values, type) {
         }
     }
     return {
-        name: now.toString(),
+        name: now,
         value: [
             now,
             value
