@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+	<title>用友分析云</title>
+	<head>
+		<title>three.js / editor</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	</head>
+	<style>
+		.dmini{
+			border: 1.8px solid #0984ad;
+			border-top-left-radius: 15px;
+			border-bottom-right-radius: 15px;
+			background: rgba(36, 65, 97, 0);
+/*			background: rgba(0,0,0,0.5);
+			clip-path: polygon( 20px 0, calc(100% - 20px) 0, 100% 20px,
+			100% calc(100% - 20px), calc(100% - 20px) 100%,
+			20px 100%,
+			0 calc(100% - 20px),
+			0 20px
+			);*/
+		}
+	</style>
+	<body ontouchstart="" style="height: 100%">
+		<div style="height: 100%;display: flex">
+			<div id="three-container" style="width: 100%;height: 100%;position: relative;"></div>
+			<div id="detail" style="padding: 10px;height: 100%;width: 30%;position: absolute;right:10px;background: rgba(0,0,0,0)">
+				<div id="echart-container" class="dmini" style="margin-bottom:10px;height: 40%;margin-top: 10%;overflow: hidden"></div>
+				<div id="info-container" class="dmini" style="height: 36%;margin-top: 10%;overflow: hidden"></div>
+			</div>
+			<h1 style="width:calc(100% - 40px);padding-left: 20px;color:#fff;position: absolute;top:20px;margin: 0 auto">生产实时监控
+				<a href="javascript:window.opener=null;window.open('','_self');window.close();" style="float:right;right:0;color:#fff;text-decoration : none">返回主界面</a>
+			</h1>
+			<h3 style="padding-left: 20px;color:#fff;position: absolute;top:50px;margin: 0 auto">Real-time production monitoring</h3>
+
+		</div>
+		<link href="css/main.css" rel="stylesheet" />
+		<link id="theme" href="css/light.css" rel="stylesheet" />
+
+		<script src="echarts.js"></script>
+		<script src="jquery-3.3.1.min.js"></script>
+		<script src="../build/three.js"></script>
+		<script src="../examples/js/libs/system.min.js"></script>
+
+		<script src="../examples/js/controls/EditorControls.js"></script>
+		<script src="../examples/js/controls/TransformControls.js"></script>
+
+		<script src="../examples/js/libs/jszip.min.js"></script>
+		<script src="../examples/js/libs/inflate.min.js"></script> <!-- FBX -->
+
+		<script src="../examples/js/loaders/AMFLoader.js"></script>
+		<script src="../examples/js/loaders/AWDLoader.js"></script>
+		<script src="../examples/js/loaders/BabylonLoader.js"></script>
+		<script src="../examples/js/loaders/ColladaLoader.js"></script>
+		<script src="../examples/js/loaders/FBXLoader.js"></script>
+		<script src="../examples/js/loaders/GLTFLoader.js"></script>
+		<script src="../examples/js/loaders/deprecated/LegacyGLTFLoader.js"></script>
+		<script src="../examples/js/loaders/KMZLoader.js"></script>
+		<script src="../examples/js/loaders/MD2Loader.js"></script>
+		<script src="../examples/js/loaders/OBJLoader.js"></script>
+		<script src="../examples/js/loaders/MTLLoader.js"></script>
+		<script src="../examples/js/loaders/PlayCanvasLoader.js"></script>
+		<script src="../examples/js/loaders/PLYLoader.js"></script>
+		<script src="../examples/js/loaders/STLLoader.js"></script>
+		<script src="../examples/js/loaders/SVGLoader.js"></script>
+		<script src="../examples/js/loaders/TGALoader.js"></script>
+		<script src="../examples/js/loaders/TDSLoader.js"></script>
+		<script src="../examples/js/loaders/UTF8Loader.js"></script>
+		<script src="../examples/js/loaders/VRMLLoader.js"></script>
+		<script src="../examples/js/loaders/VTKLoader.js"></script>
+		<script src="../examples/js/loaders/ctm/lzma.js"></script>
+		<script src="../examples/js/loaders/ctm/ctm.js"></script>
+		<script src="../examples/js/loaders/ctm/CTMLoader.js"></script>
+		<script src="../examples/js/exporters/OBJExporter.js"></script>
+		<script src="../examples/js/exporters/GLTFExporter.js"></script>
+		<script src="../examples/js/exporters/STLExporter.js"></script>
+
+		<script src="../examples/js/renderers/Projector.js"></script>
+		<script src="../examples/js/renderers/CanvasRenderer.js"></script>
+		<script src="../examples/js/renderers/RaytracingRenderer.js"></script>
+		<script src="../examples/js/renderers/SoftwareRenderer.js"></script>
+		<script src="../examples/js/renderers/SVGRenderer.js"></script>
+
+		<link rel="stylesheet" href="js/libs/codemirror/codemirror.css">
+		<link rel="stylesheet" href="js/libs/codemirror/theme/monokai.css">
+		<script src="js/libs/codemirror/codemirror.js"></script>
+		<script src="js/libs/codemirror/mode/javascript.js"></script>
+		<script src="js/libs/codemirror/mode/glsl.js"></script>
+
+		<script src="js/libs/esprima.js"></script>
+		<script src="js/libs/jsonlint.js"></script>
+		<script src="js/libs/glslprep.min.js"></script>
+
+		<link rel="stylesheet" href="js/libs/codemirror/addon/dialog.css">
+		<link rel="stylesheet" href="js/libs/codemirror/addon/show-hint.css">
+		<link rel="stylesheet" href="js/libs/codemirror/addon/tern.css">
+		<script src="js/libs/codemirror/addon/dialog.js"></script>
+		<script src="js/libs/codemirror/addon/show-hint.js"></script>
+		<script src="js/libs/codemirror/addon/tern.js"></script>
+		<script src="js/libs/acorn/acorn.js"></script>
+		<script src="js/libs/acorn/acorn_loose.js"></script>
+		<script src="js/libs/acorn/walk.js"></script>
+		<script src="js/libs/ternjs/polyfill.js"></script>
+		<script src="js/libs/ternjs/signal.js"></script>
+		<script src="js/libs/ternjs/tern.js"></script>
+		<script src="js/libs/ternjs/def.js"></script>
+		<script src="js/libs/ternjs/comment.js"></script>
+		<script src="js/libs/ternjs/infer.js"></script>
+		<script src="js/libs/ternjs/doc_comment.js"></script>
+		<script src="js/libs/tern-threejs/threejs.js"></script>
+
+		<script src="js/libs/signals.min.js"></script>
+		<script src="js/libs/ui.js"></script>
+		<script src="js/libs/ui.three.js"></script>
+
+		<script src="js/libs/app.js"></script>
+		<script src="js/Player.js"></script>
+		<script src="js/Script.js"></script>
+
+		<script src="../examples/js/vr/WebVR.js"></script>
+
+		<script src="js/Storage.js"></script>
+
+		<script src="js/Editor.js"></script>
+		<script src="js/Config.js"></script>
+		<script src="js/History.js"></script>
+		<script src="js/Loader.js"></script>
+		<script src="js/Menubar.js"></script>
+		<script src="js/Menubar.File.js"></script>
+		<script src="js/Menubar.Edit.js"></script>
+		<script src="js/Menubar.Add.js"></script>
+		<script src="js/Menubar.Play.js"></script>
+		<!-- <script src="js/Menubar.View.js"></script> -->
+		<script src="js/Menubar.Examples.js"></script>
+		<script src="js/Menubar.Help.js"></script>
+		<script src="js/Menubar.Status.js"></script>
+		<script src="js/Sidebar.js"></script>
+		<script src="js/Sidebar.Scene.js"></script>
+		<script src="js/Sidebar.Project.js"></script>
+		<script src="js/Sidebar.Settings.js"></script>
+		<script src="js/Sidebar.Settings.Shortcuts.js"></script>
+		<script src="js/Sidebar.Settings.Viewport.js"></script>
+		<script src="js/Sidebar.Properties.js"></script>
+		<script src="js/Sidebar.Object.js"></script>
+		<script src="js/Sidebar.Geometry.js"></script>
+		<script src="js/Sidebar.Geometry.Geometry.js"></script>
+		<script src="js/Sidebar.Geometry.BufferGeometry.js"></script>
+		<script src="js/Sidebar.Geometry.Modifiers.js"></script>
+		<script src="js/Sidebar.Geometry.BoxGeometry.js"></script>
+		<script src="js/Sidebar.Geometry.CircleGeometry.js"></script>
+		<script src="js/Sidebar.Geometry.CylinderGeometry.js"></script>
+		<script src="js/Sidebar.Geometry.IcosahedronGeometry.js"></script>
+		<script src="js/Sidebar.Geometry.PlaneGeometry.js"></script>
+		<script src="js/Sidebar.Geometry.SphereGeometry.js"></script>
+		<script src="js/Sidebar.Geometry.TorusGeometry.js"></script>
+		<script src="js/Sidebar.Geometry.TorusKnotGeometry.js"></script>
+		<script src="../examples/js/geometries/TeapotBufferGeometry.js"></script>
+		<script src="js/Sidebar.Geometry.TeapotBufferGeometry.js"></script>
+		<script src="js/Sidebar.Geometry.LatheGeometry.js"></script>
+		<script src="js/Sidebar.Material.js"></script>
+		<script src="js/Sidebar.Animation.js"></script>
+		<script src="js/Sidebar.Script.js"></script>
+		<script src="js/Sidebar.History.js"></script>
+		<script src="js/Toolbar.js"></script>
+		<script src="js/Viewport.js"></script>
+		<script src="js/Viewport.Info.js"></script>
+
+		<script src="js/Command.js"></script>
+		<script src="js/commands/AddObjectCommand.js"></script>
+		<script src="js/commands/RemoveObjectCommand.js"></script>
+		<script src="js/commands/MoveObjectCommand.js"></script>
+		<script src="js/commands/SetPositionCommand.js"></script>
+		<script src="js/commands/SetRotationCommand.js"></script>
+		<script src="js/commands/SetScaleCommand.js"></script>
+		<script src="js/commands/SetValueCommand.js"></script>
+		<script src="js/commands/SetUuidCommand.js"></script>
+		<script src="js/commands/SetColorCommand.js"></script>
+		<script src="js/commands/SetGeometryCommand.js"></script>
+		<script src="js/commands/SetGeometryValueCommand.js"></script>
+		<script src="js/commands/MultiCmdsCommand.js"></script>
+		<script src="js/commands/AddScriptCommand.js"></script>
+		<script src="js/commands/RemoveScriptCommand.js"></script>
+		<script src="js/commands/SetScriptValueCommand.js"></script>
+		<script src="js/commands/SetMaterialCommand.js"></script>
+		<script src="js/commands/SetMaterialValueCommand.js"></script>
+		<script src="js/commands/SetMaterialColorCommand.js"></script>
+		<script src="js/commands/SetMaterialMapCommand.js"></script>
+		<script src="js/commands/SetSceneCommand.js"></script>
+
+		<script src="js/libs/html2canvas.js"></script>
+		<script src="js/libs/three.html.js"></script>
+
+		<script src="tool.js"></script>
+		<script src="demo.js"></script>
+		<script src="data.js"></script>
+		<script src="option.js"></script>
+		<script src="interval.js"></script>
+
+	</body>
+</html>

@@ -7,7 +7,7 @@ class App extends Component {
     constructor(p) {
         super(p);
         this.state = {
-            showPage: 0
+            showPage: 1
         }
     }
 
