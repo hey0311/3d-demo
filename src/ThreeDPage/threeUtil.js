@@ -27,6 +27,7 @@ export const render3d=()=>{
         return this.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
     };
     var editor = new Editor();
+    window.editor=editor;
     var viewport = new Viewport(editor);
     document.getElementById('three-container').appendChild(viewport.dom);
     var script = new Script(editor);

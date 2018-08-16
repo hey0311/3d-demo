@@ -1,15 +1,17 @@
 import React, {Component} from 'react';
 import './index.css';
 import * as threeUtil from "./threeUtil";
+import * as chartUtil from "./chartUtil"
 
 class ThreeDPage extends Component {
     componentDidMount() {
-        threeUtil.render3d()
+        threeUtil.render3d();
+        chartUtil.renderChart();
     }
 
     render() {
         return (
-            <div id="3d-page" style={{height:'100%',width:'100%'}}>
+            <div id="3d-page" style={{height:'100%',width:'100%',position:'relative',display:'flex'}}>
                 <div id="three-container"></div>
                 <div id="detail">
                     <div id="echart-container" className="dmini"></div>
