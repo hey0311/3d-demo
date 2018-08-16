@@ -22,7 +22,6 @@ export const renderBarChart=(chartId,data,threeConfig,modelMap,title)=>{
             }
         })
     }
-    console.log(xAxisData)
 
     var option = {
         backgroundColor:chartBkColor,

@@ -715,7 +715,7 @@ class MapPage extends Component {
     }
     render() {
         return (
-            <div style={{height: '100%',width: '100%',overflow: 'hidden'}} id="main-page">
+            <div style={{height: '100%',width: '100%',overflow: 'hidden',display:this.props.hide?'none':'block'}} id="main-page">
                 <div id="main"></div>
                 <div className="mini" style={{top:'64.8px'}}>
                     <p><span id="treeForestName">达客园依</span>林场基本信息</p>
@@ -820,8 +820,8 @@ class MapPage extends Component {
                     <div className='detail'>生产周期：<span id='cycle'>10天</span></div>
                 </div>
                 <div className="mini-bottom" style={{width:'30%',paddingTop:'30px'}}>
-            <span id="goto3D"
-                  style={{cursor:'pointer',color: '#00ffdc',textDecoration: 'none'}}>工厂3D模型图(加载中,请稍候)</span>
+            <span id="goto3D" onClick={this.props.hidePage}
+                  style={{cursor:'pointer',color: '#00ffdc',textDecoration: 'none'}}>工厂3D模型图</span>
                     <div className='info-detail'>在产产品：<span id='produceGood'>1200X600X4.75mm刨花板</span></div>
                     <div className='info-detail'>生产班组：<span id='produceTeam'>A组</span></div>
                     <div className='info-detail'>是否FSC认证：<span id='progressFsc'>是</span></div>

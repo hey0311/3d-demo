@@ -4,11 +4,13 @@ import * as threeUtil from "./threeUtil";
 import * as chartUtil from "./chartUtil"
 import {randomData, setWarning} from "./util"
 import _ from 'lodash'
+import echarts from 'echarts'
 
 class ThreeDPage extends Component {
     constructor(p) {
         super(p);
         var now = new Date();
+        this.resizeAfterUpdate = false;
         this.reyaModelMap = [{
             objName: 'Obj3d66_582169_127_839',
             mes: 'inTemp',
@@ -43,9 +45,9 @@ class ThreeDPage extends Component {
             //3d模型图的点击事件
             objectSelectedFn: (obj) => {
                 //只能点击设备
-                let reyaArr=_.map(this.reyaModelMap,'objName');
-                let jqArr=_.map(this.jqModelMap,'objName');
-                if (reyaArr.concat(jqArr).indexOf(obj.name)===-1) {
+                let reyaArr = _.map(this.reyaModelMap, 'objName');
+                let jqArr = _.map(this.jqModelMap, 'objName');
+                if (reyaArr.concat(jqArr).indexOf(obj.name) === -1) {
                     return;
                 }
                 this.reyaModelMap.map((d) => {
@@ -71,7 +73,7 @@ class ThreeDPage extends Component {
                         objName = map[j].objName;
                         this.focusObjByName(objName);
                         this.setState({
-                            mes:map[j].mes
+                            mes: map[j].mes
                         });
                         return;
                     }
@@ -82,7 +84,7 @@ class ThreeDPage extends Component {
                         objName = map[j].objName;
                         this.focusObjByName(objName);
                         this.setState({
-                            jqMes:map[j].mes
+                            jqMes: map[j].mes
                         });
                         return;
                     }
@@ -166,6 +168,12 @@ class ThreeDPage extends Component {
         }
     }
 
+    componentWillReceiveProps(p) {
+        if (!p.hide) {
+            this.resizeAfterUpdate = true;
+        }
+    }
+
     //根据模型名称来对焦
     focusObjByName(objName) {
         for (var i = 0; i < this.threeConfig.modelObj.children.length; i++) {
@@ -175,7 +183,18 @@ class ThreeDPage extends Component {
         }
     }
 
-    renderChart() {
+    renderChart(resize) {
+        if (resize) {
+            var myChart;
+            myChart = echarts.init(document.getElementById('chart-container-right-top'));
+            myChart.resize()
+            myChart = echarts.init(document.getElementById('chart-container-left-top'));
+            myChart.resize()
+            myChart = echarts.init(document.getElementById('chart-container-right-bottom'));
+            myChart.resize()
+            myChart = echarts.init(document.getElementById('chart-container-left-bottom'));
+            myChart.resize()
+        }
         let reyaTitle = '', jqTitle = '';
         this.reyaModelMap.map((m) => {
             if (m.mes === this.state.mes) {
@@ -200,7 +219,11 @@ class ThreeDPage extends Component {
     }
 
     componentDidUpdate() {
-        this.renderChart();
+        if (this.resizeAfterUpdate) {
+            this.threeConfig.editor.signals.windowResize.dispatch();
+            this.resizeAfterUpdate = false;
+        }
+        this.renderChart(true);
     }
 
     refreshChart() {
@@ -242,7 +265,7 @@ class ThreeDPage extends Component {
     }
 
     refresh3DModel() {
-        if (this.threeConfig.editor.scene.children) {
+        if (this.threeConfig.modelObj) {
             let modelObj = this.threeConfig.modelObj;
             for (var i = 0; i < modelObj.children.length; i++) {
                 for (var j = 0; j < this.reyaModelMap.length; j++) {
@@ -263,13 +286,19 @@ class ThreeDPage extends Component {
 
     render() {
         return (
-            <div id="3d-page" style={{height: '100%', width: '100%', position: 'relative',overflow:'hidden'}}>
+            <div id="3d-page" style={{
+                height: '100%',
+                width: '100%',
+                position: 'relative',
+                overflow: 'hidden',
+                display: this.props.hide ? 'none' : 'block'
+            }}>
                 <div id="three-container"></div>
                 <div id="chart-container-left-top" className="chart-container"></div>
                 <div id="chart-container-left-bottom" className="chart-container"></div>
                 <div id="chart-container-right-top" className="chart-container"></div>
                 <div id="chart-container-right-bottom" className="chart-container"></div>
-                <input type="button" id="goto-main" value="返回主界面"/>
+                <input type="button" id="goto-main" onClick={this.props.hidePage} value="返回主界面"/>
                 <h1>
                     工厂生产实时监控
                 </h1>
