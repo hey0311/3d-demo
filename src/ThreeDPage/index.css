@@ -1,16 +1,35 @@
-#3d-page{
-    height: 100%;display: flex
+#3d-page {
+    height: 100%;
+    display: flex
 }
-#three-container{
-    width: 100%;height: 100%;position: relative;
+
+#three-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
 }
-#chart-container-reyaBar{
-    top:15%;
+
+#chart-container-right-top {
+    top: 15%;
+    right: 2%;
 }
-#chart-container-reyaLine{
-    bottom:10%;
+
+#chart-container-right-bottom {
+    bottom: 10%;
+    right: 2%;
 }
-#goto-main{
+
+#chart-container-left-top {
+    top: 15%;
+    left: 2%;
+}
+
+#chart-container-left-bottom {
+    bottom: 10%;
+    left: 2%;
+}
+
+#goto-main {
     width: 150px;
     height: 40px;
     margin-top: 20px;
@@ -18,26 +37,34 @@
     background: grey;
     border-radius: 5px;
     font-size: 20px;
-    color:#fff;
-    position:absolute;
+    color: #fff;
+    position: absolute;
 }
-h1{
-    width:calc(100% - 40px);
-    padding-left: 20px;
-    color:#fff;position: absolute;top:20px;margin: 0 auto;display: none
+
+h1 {
+    width: 100%;
+    color: #fff;
+    position: absolute;
+    top: 20px;
+    margin: 0 auto;
 }
-h3{
-    padding-left: 20px;color:#fff;position: absolute;top:50px;margin: 0 auto;display: none
+
+h3 {
+    width: 100%;
+    color: #fff;
+    position: absolute;
+    top: 60px;
+    margin: 0 auto;
 }
-.chart-container{
+
+.chart-container {
     padding-left: 5px;
     border: none;
     background: url("../res/chartBk.png");
     background-size: 119% 188%;
     background-position: 54% -164%;
-    right: 2%;
     overflow: hidden;
-    position:absolute;
+    position: absolute;
     height: 30%;
-    width:20%;
+    width: 20%;
 }

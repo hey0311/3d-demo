@@ -22,6 +22,23 @@ class ThreeDPage extends Component {
             mes: 'outTemp',
             mesName: '出口温度'
         }];
+        this.jqModelMap = [{
+            objName: '��007',
+            mes: 'crossGive',
+            mesName: '纵锯进给'
+        }, {
+            objName: '��006',
+            mes: 'crossBack',
+            mesName: '纵锯回程'
+        }, {
+            objName: '��005',
+            mes: 'rowGive',
+            mesName: '横锯进给'
+        }, {
+            objName: '��004',
+            mes: 'rowBack',
+            mesName: '横锯回程'
+        }]
         this.threeConfig = {
             //3d模型图的点击事件
             objectSelectedFn: (obj) => {
@@ -47,7 +64,25 @@ class ThreeDPage extends Component {
                         this.focusObjByName(objName);
                     }
                 }
+                map=this.jqModelMap;
+                for (var j = 0; j < map.length; j++) {
+                    if (itemName === map[j].mesName) {
+                        objName = map[j].objName;
+                        this.focusObjByName(objName);
+                    }
+                }
             }
+        };
+        this.reyaStand = {
+            inTemp: 120,
+            centerTemp: 180,
+            outTemp: 80
+        };
+        this.jqStand = {
+            crossGive: 30,
+            crossBack: 35,
+            rowGive: 32,
+            rowBack: 40
         };
         this.state = {
             data: {
@@ -76,7 +111,42 @@ class ThreeDPage extends Component {
                     formatValue: Math.random() * 100
                 }]
             },
-            mes: 'inTemp'
+            mes: 'inTemp',
+            jqMes: 'crossGive',
+            data2: {
+                crossGive: [{
+                    name: now.toString(),
+                    value: [
+                        now,
+                        Math.random() * 30
+                    ],
+                    formatValue: Math.random() * 30
+                }],
+                crossBack: [{
+                    name: now.toString(),
+                    value: [
+                        now,
+                        Math.random() * 30
+                    ],
+                    formatValue: Math.random() * 30
+                }],
+                rowGive: [{
+                    name: now.toString(),
+                    value: [
+                        now,
+                        Math.random() * 30
+                    ],
+                    formatValue: Math.random() * 30
+                }],
+                rowBack: [{
+                    name: now.toString(),
+                    value: [
+                        now,
+                        Math.random() * 30
+                    ],
+                    formatValue: Math.random() * 30
+                }]
+            }
         }
     }
 
@@ -89,21 +159,27 @@ class ThreeDPage extends Component {
         }
     }
 
+    renderChart() {
+        chartUtil.renderBarChart('chart-container-right-top', this.state.data, this.threeConfig, this.reyaModelMap, '热压设备温度监测');
+        chartUtil.renderBarChart('chart-container-left-top', this.state.data2, this.threeConfig, this.jqModelMap, '锯切速度监测');
+        chartUtil.renderLineChart('chart-container-right-bottom', this.state.data, this.state.mes, this.reyaModelMap, '温度', this.reyaStand);
+        chartUtil.renderLineChart('chart-container-left-bottom', this.state.data2, this.state.jqMes, this.jqModelMap, '速度', this.jqStand);
+    }
+
     componentDidMount() {
         threeUtil.render3d(this.threeConfig);
-        chartUtil.renderBarChart(this.state.data, this.threeConfig);
-        chartUtil.renderLineChart(this.state.data, this.state.mes);
+        this.renderChart();
         this.refreshChart();
     }
 
     componentDidUpdate() {
-        chartUtil.renderBarChart(this.state.data, this.threeConfig);
-        chartUtil.renderLineChart(this.state.data, this.state.mes);
+        this.renderChart();
     }
 
     refreshChart() {
         setInterval(() => {
             let data = _.cloneDeep(this.state.data);
+            let data2 = _.cloneDeep(this.state.data2);
             if (data.inTemp.length > 50) {
                 data.inTemp = data.inTemp.slice(1, data.inTemp.length);
             }
@@ -116,7 +192,24 @@ class ThreeDPage extends Component {
                 data.outTemp = data.outTemp.slice(1, data.outTemp.length);
             }
             data.outTemp.push(randomData(data.outTemp, 'outTemp'));
-            this.setState({data});
+            //锯切数据
+            if (data2.crossGive.length > 50) {
+                data2.crossGive = data2.crossGive.slice(1, data2.crossGive.length);
+            }
+            data2.crossGive.push(randomData(data2.crossGive, 'crossGive'));
+            if (data2.crossBack.length > 50) {
+                data2.crossBack = data2.crossBack.slice(1, data2.crossBack.length);
+            }
+            data2.crossBack.push(randomData(data2.crossBack, 'crossBack'));
+            if (data2.rowGive.length > 50) {
+                data2.rowGive = data2.rowGive.slice(1, data2.rowGive.length);
+            }
+            data2.rowGive.push(randomData(data2.rowGive, 'rowGive'));
+            if (data2.rowBack.length > 50) {
+                data2.rowBack = data2.rowBack.slice(1, data2.rowBack.length);
+            }
+            data2.rowBack.push(randomData(data2.rowBack, 'rowBack'));
+            this.setState({data, data2});
             this.refresh3DModel();
         }, 1000)
     }
@@ -131,11 +224,12 @@ class ThreeDPage extends Component {
                             this.state.data[this.reyaModelMap[j].mes][this.state.data[this.reyaModelMap[j].mes].length - 1].formatValue);
                     }
                 }
-                /*                for (var j = 0; j <jqModelMap.length; j++) {
-                                    if (obj.children[i].name === jqModelMap[j].objName) {
-                                        setWarning(obj.children[i], data_jq[jqModelMap[j].mes][data_jq[jqModelMap[j].mes].length - 1].formatValue);
-                                    }
-                                }*/
+                for (var j = 0; j < this.jqModelMap.length; j++) {
+                    if (modelObj.children[i].name === this.jqModelMap[j].objName) {
+                        setWarning(modelObj.children[i],
+                            this.state.data2[this.jqModelMap[j].mes][this.state.data2[this.jqModelMap[j].mes].length - 1].formatValue);
+                    }
+                }
             }
         }
     }
@@ -144,11 +238,13 @@ class ThreeDPage extends Component {
         return (
             <div id="3d-page" style={{height: '100%', width: '100%', position: 'relative'}}>
                 <div id="three-container"></div>
-                <div id="chart-container-reyaBar" className="chart-container"></div>
-                <div id="chart-container-reyaLine" className="chart-container"></div>
+                <div id="chart-container-left-top" className="chart-container"></div>
+                <div id="chart-container-left-bottom" className="chart-container"></div>
+                <div id="chart-container-right-top" className="chart-container"></div>
+                <div id="chart-container-right-bottom" className="chart-container"></div>
                 <input type="button" id="goto-main" value="返回主界面"/>
                 <h1>
-                    生产实时监控
+                    工厂生产实时监控
                 </h1>
                 <h3>
                     Real-time production

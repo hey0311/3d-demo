@@ -1,46 +1,35 @@
 /* eslint-disable */
 import echarts from 'echarts'
 import {getColor,randomData,setWarning} from "./util"
-export const renderBarChart=(data,threeConfig)=>{
-    var echart_show_old=0;//0 温度 1 锯切
-    var echart_show=0;//0 温度 1 锯切
-    var reyaModelMap = [{
-        objName: 'Obj3d66_582169_127_839',
-        mes: 'inTemp',
-        mesName: '入口温度'
-    }, {
-        objName: 'Obj3d66_582169_127_838',
-        mes: 'centerTemp',
-        mesName: '中部温度'
-    }, {
-        objName: 'Obj3d66_582169_127_837',
-        mes: 'outTemp',
-        mesName: '出口温度'
-    }];
-    var jqModelMap = [{
-        objName: '��007',
-        mes: 'crossGive',
-        mesName: '纵进给速度'
-    }, {
-        objName: '��006',
-        mes: 'crossBack',
-        mesName: '纵回程速度'
-    }, {
-        objName: '��005',
-        mes: 'rowGive',
-        mesName: '横进给速度'
-    },{
-        objName: '��004',
-        mes: 'rowBack',
-        mesName: '横回程速度'
-    }];
-    var myChart = echarts.init(document.getElementById('chart-container-reyaBar'));
+const axisFontSize=12;
+const chartTitleSize=18;
+const chartBkColor='rgba(128, 128, 128, 0)';
+export const renderBarChart=(chartId,data,threeConfig,modelMap,title)=>{
+    var myChart = echarts.init(document.getElementById(chartId));
+    let sdata=[],xAxisData=[];
+    for(let key in data){
+        sdata.push({
+            value:data[key][data[key].length-1].value[1],
+            itemStyle:{
+                normal:{
+                    color:getColor(data[key][data[key].length-1].formatValue)
+                }
+            }
+        });
+        modelMap.map((m)=>{
+            if(m.mes===key){
+                xAxisData.push(m.mesName)
+            }
+        })
+    }
+    console.log(xAxisData)
+
     var option = {
-        backgroundColor:'rgba(128, 128, 128, 0)',
+        backgroundColor:chartBkColor,
         title: {
-            text: '热压设备温度监测',
+            text: title,
             textStyle:{
-                fontSize:24,
+                fontSize:chartTitleSize,
                 color:'#fff'
             }
         },
@@ -49,9 +38,10 @@ export const renderBarChart=(data,threeConfig)=>{
         },
         xAxis: {
             type: 'category',
-            data: ['入口温度', '中部温度', '出口温度'],
+            data: xAxisData,
             axisLabel:{
-                fontSize:16,
+                fontSize:axisFontSize,
+                interval:0,
                 color:'#fff'
             },
             axisLine:{
@@ -63,8 +53,8 @@ export const renderBarChart=(data,threeConfig)=>{
         yAxis: {
             type: 'value',
             axisLabel: {
-                formatter: '{value}度',
-                fontSize:16,
+                formatter: '{value}',
+                fontSize:axisFontSize,
                 color:'#fff'
             },
             splitLine:{
@@ -77,131 +67,23 @@ export const renderBarChart=(data,threeConfig)=>{
             }
         },
         series: [{
-            data: [{
-                value: data.inTemp[data.inTemp.length - 1].value[1],
-                itemStyle: {
-                    normal: {
-                        color: getColor(data.inTemp[data.inTemp.length - 1].formatValue)
-                    }
-                }
-            }, {
-                value: data.centerTemp[data.centerTemp.length - 1].value[1],
-                itemStyle: {
-                    normal: {
-                        color: getColor(data.centerTemp[data.centerTemp.length - 1].formatValue)
-                    }
-                }
-
-            }, {
-                value: data.outTemp[data.outTemp.length - 1].value[1],
-                itemStyle: {
-                    normal: {
-                        color: getColor(data.outTemp[data.outTemp.length - 1].formatValue)
-                    }
-                }
-
-            }],
+            data: sdata,
             type: 'bar'
         }]
     };
     myChart.setOption(option);
     myChart.on('click', function (params) {
-        // chartClickFun(reyaModelMap,params)
         threeConfig.chartItemClickedFn(params.name);
     });
 }
-export const renderLineChart=(data,mes)=>{
-    var echart_show_old=0;//0 温度 1 锯切
-    var echart_show=0;//0 温度 1 锯切
-    var reyaModelMap = [{
-        objName: 'Obj3d66_582169_127_839',
-        mes: 'inTemp',
-        mesName: '入口温度'
-    }, {
-        objName: 'Obj3d66_582169_127_838',
-        mes: 'centerTemp',
-        mesName: '中部温度'
-    }, {
-        objName: 'Obj3d66_582169_127_837',
-        mes: 'outTemp',
-        mesName: '出口温度'
-    }];
-    var jqModelMap = [{
-        objName: '��007',
-        mes: 'crossGive',
-        mesName: '纵进给速度'
-    }, {
-        objName: '��006',
-        mes: 'crossBack',
-        mesName: '纵回程速度'
-    }, {
-        objName: '��005',
-        mes: 'rowGive',
-        mesName: '横进给速度'
-    },{
-        objName: '��004',
-        mes: 'rowBack',
-        mesName: '横回程速度'
-    }];
-    var now = new Date();
-    var data_jq = {
-        crossGive: [{
-            name: now.toString(),
-            value: [
-                now,
-                Math.random() * 30
-            ],
-            formatValue: Math.random() * 30
-        }],
-        crossBack: [{
-            name: now.toString(),
-            value: [
-                now,
-                Math.random() * 30
-            ],
-            formatValue: Math.random() * 30
-        }],
-        rowGive: [{
-            name: now.toString(),
-            value: [
-                now,
-                Math.random() * 30
-            ],
-            formatValue: Math.random() * 30
-        }],
-        rowBack: [{
-            name: now.toString(),
-            value: [
-                now,
-                Math.random() * 30
-            ],
-            formatValue: Math.random() * 30
-        }]
-    };
-    var selectMesName = '入口温度';
-    var intervalTime = 1000;
-    // var mesName = '入口温度';
-    var mesName_jq = '纵锯进给速度';
-    // var mes = 'inTemp';
-    var mes_jq = 'rowGive';
-    var stand={
-        inTemp:120,
-        centerTemp:180,
-        outTemp:80
-    };
-    var stand_jq={
-        crossGive:30,
-        crossBack:35,
-        rowGive:32,
-        rowBack:40
-    };
-    var myChart = echarts.init(document.getElementById('chart-container-reyaLine'));
+export const renderLineChart=(chartId,data,mes,modelMap,title,stand)=>{
+    var myChart = echarts.init(document.getElementById(chartId));
     var option = {
-        backgroundColor:'rgba(128, 128, 128, 0)',
+        backgroundColor:chartBkColor,
         title: {
-            text: '温度',
+            text: title,
             textStyle:{
-                fontSize:24,
+                fontSize:chartTitleSize,
                 color:'#fff'
             }
         },
@@ -225,7 +107,7 @@ export const renderLineChart=(data,mes)=>{
                 show: false
             },
             axisLabel:{
-                fontSize:16
+                fontSize:axisFontSize
             },
             axisLine:{
                 lineStyle:{
@@ -240,8 +122,8 @@ export const renderLineChart=(data,mes)=>{
                 show: false
             },
             axisLabel: {
-                formatter: '{value}度',
-                fontSize:16,
+                formatter: '{value}',
+                fontSize:axisFontSize,
                 color:'#fff'
             },
             axisLine:{
