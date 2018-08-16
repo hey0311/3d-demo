@@ -43,7 +43,9 @@ class ThreeDPage extends Component {
             //3d模型图的点击事件
             objectSelectedFn: (obj) => {
                 //只能点击设备
-                if (_.map(this.reyaModelMap, 'objName').indexOf(obj.name) === -1) {
+                let reyaArr=_.map(this.reyaModelMap,'objName');
+                let jqArr=_.map(this.jqModelMap,'objName');
+                if (reyaArr.concat(jqArr).indexOf(obj.name)===-1) {
                     return;
                 }
                 this.reyaModelMap.map((d) => {
@@ -53,7 +55,13 @@ class ThreeDPage extends Component {
                         })
                     }
                 })
-                console.log(obj.name)
+                this.jqModelMap.map((d) => {
+                    if (d.objName === obj.name) {
+                        this.setState({
+                            jqMes: d.mes
+                        })
+                    }
+                })
             },
             //柱形图点击事件的回调
             chartItemClickedFn: (itemName) => {
@@ -62,14 +70,20 @@ class ThreeDPage extends Component {
                     if (itemName === map[j].mesName) {
                         objName = map[j].objName;
                         this.focusObjByName(objName);
+                        this.setState({
+                            mes:map[j].mes
+                        });
                         return;
                     }
                 }
-                map=this.jqModelMap;
+                map = this.jqModelMap;
                 for (var j = 0; j < map.length; j++) {
                     if (itemName === map[j].mesName) {
                         objName = map[j].objName;
                         this.focusObjByName(objName);
+                        this.setState({
+                            jqMes:map[j].mes
+                        });
                         return;
                     }
                 }
@@ -162,10 +176,21 @@ class ThreeDPage extends Component {
     }
 
     renderChart() {
+        let reyaTitle = '', jqTitle = '';
+        this.reyaModelMap.map((m) => {
+            if (m.mes === this.state.mes) {
+                reyaTitle = m.mesName;
+            }
+        });
+        this.jqModelMap.map(m => {
+            if (m.mes === this.state.jqMes) {
+                jqTitle = m.mesName;
+            }
+        })
         chartUtil.renderBarChart('chart-container-right-top', this.state.data, this.threeConfig, this.reyaModelMap, '热压设备温度监测');
         chartUtil.renderBarChart('chart-container-left-top', this.state.data2, this.threeConfig, this.jqModelMap, '锯切速度监测');
-        chartUtil.renderLineChart('chart-container-right-bottom', this.state.data, this.state.mes, this.reyaModelMap, '温度', this.reyaStand);
-        chartUtil.renderLineChart('chart-container-left-bottom', this.state.data2, this.state.jqMes, this.jqModelMap, '速度', this.jqStand);
+        chartUtil.renderLineChart('chart-container-right-bottom', this.state.data, this.state.mes, this.reyaModelMap, reyaTitle, this.reyaStand);
+        chartUtil.renderLineChart('chart-container-left-bottom', this.state.data2, this.state.jqMes, this.jqModelMap, jqTitle, this.jqStand);
     }
 
     componentDidMount() {

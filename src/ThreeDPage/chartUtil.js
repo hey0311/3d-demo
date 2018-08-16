@@ -1,8 +1,8 @@
 /* eslint-disable */
 import echarts from 'echarts'
 import {getColor,randomData,setWarning} from "./util"
-const axisFontSize=12;
-const chartTitleSize=18;
+const axisFontSize=16;
+const chartTitleSize=20;
 const chartBkColor='rgba(128, 128, 128, 0)';
 export const renderBarChart=(chartId,data,threeConfig,modelMap,title)=>{
     var myChart = echarts.init(document.getElementById(chartId));
