@@ -200,11 +200,11 @@ class ThreeDPage extends Component {
             if (m.mes === this.state.jqMes) {
                 jqTitle = m.mesName;
             }
-        })
-        chartUtil.renderBarChart(this.myChart_right_top, this.state.data, this.threeConfig, this.reyaModelMap, '热压设备温度监测');
-        chartUtil.renderBarChart(this.myChart_left_top, this.state.data2, this.threeConfig, this.jqModelMap, '锯切速度监测');
-        chartUtil.renderLineChart(this.myChart_right_bottom, this.state.data, this.state.mes, this.reyaModelMap, reyaTitle, this.reyaStand);
-        chartUtil.renderLineChart(this.myChart_left_bottom, this.state.data2, this.state.jqMes, this.jqModelMap, jqTitle, this.jqStand);
+        });
+        chartUtil.renderBarChart(this.myChart_right_top, this.state.data, this.threeConfig, this.reyaModelMap, '热压设备温度总体情况');
+        chartUtil.renderBarChart(this.myChart_left_top, this.state.data2, this.threeConfig, this.jqModelMap, '锯切速度总体情况');
+        chartUtil.renderLineChart(this.myChart_right_bottom, this.state.data, this.state.mes, this.reyaModelMap, reyaTitle+'趋势(度)', this.reyaStand);
+        chartUtil.renderLineChart(this.myChart_left_bottom, this.state.data2, this.state.jqMes, this.jqModelMap, jqTitle+'速度趋势(r/s)', this.jqStand);
     }
 
     componentDidMount() {

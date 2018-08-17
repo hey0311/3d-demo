@@ -145,10 +145,11 @@ export const renderLineChart = (myChart, data, mes, modelMap, title, stand) => {
                 lineStyle: {
                     color: '#fff'
                 }
-            }
+            },
+            min:0
         },
         visualMap: {
-            top: 10,
+            top: 30,
             right: 10,
             textGap: 5,
             itemWidth: 15,
@@ -176,6 +177,7 @@ export const renderLineChart = (myChart, data, mes, modelMap, title, stand) => {
         },
         series: [{
             name: '模拟数据',
+            smooth:true,
             type: 'line',
             showSymbol: false,
             hoverAnimation: false,

@@ -7,8 +7,8 @@ class App extends Component {
     constructor(p) {
         super(p);
         this.state = {
-            hideMapPage: false,
-            hide3dPage: true
+            hideMapPage:true,
+            hide3dPage: false
         }
     }
 
