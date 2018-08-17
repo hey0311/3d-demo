@@ -53,14 +53,16 @@ class ThreeDPage extends Component {
                 this.reyaModelMap.map((d) => {
                     if (d.objName === obj.name) {
                         this.setState({
-                            mes: d.mes
+                            mes: d.mes,
+                            deviceSelected:d.mes
                         })
                     }
                 })
                 this.jqModelMap.map((d) => {
                     if (d.objName === obj.name) {
                         this.setState({
-                            jqMes: d.mes
+                            jqMes: d.mes,
+                            deviceSelected:d.mes
                         })
                     }
                 })
@@ -73,7 +75,8 @@ class ThreeDPage extends Component {
                         objName = map[j].objName;
                         this.focusObjByName(objName);
                         this.setState({
-                            mes: map[j].mes
+                            mes: map[j].mes,
+                            deviceSelected:map[j].mes
                         });
                         return;
                     }
@@ -84,7 +87,8 @@ class ThreeDPage extends Component {
                         objName = map[j].objName;
                         this.focusObjByName(objName);
                         this.setState({
-                            jqMes: map[j].mes
+                            jqMes: map[j].mes,
+                            deviceSelected:map[j].mes
                         });
                         return;
                     }
@@ -106,8 +110,8 @@ class ThreeDPage extends Component {
             index: 0
         };
         this.points = {
-            inTemp: [0, 0.3, 0.7, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.2, 1, 0.9, 0.8, 0.9, 0.8, 0.7, 0.6, 0.6, 0.5, 0.5, 0.4, 0.2, 0.1],
-            centerTemp: [0, 0.1, 0.2, 0.4, 0.5, 0.8, 0.9, 0.9, 0.7, 0.7, 1, 1.2, 1.2, 1.2, 0.8, 0.7, 0.6, 0.6, 0.5, 0.5, 0.4, 0.2, 0.1],
+            inTemp: [0, 0.3, 0.7, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.2, 1, 1.1, 1, 0.9, 0.8, 0.7, 0.6, 0.6, 0.5, 0.5, 0.4, 0.2, 0.1],
+            centerTemp: [0, 0.1, 0.2, 0.4, 0.5, 0.8, 0.9, 0.9, 1, 1, 1, 1.2, 1.2, 1.2, 0.8, 0.7, 0.6, 0.6, 0.5, 0.5, 0.4, 0.2, 0.1],
             outTemp: [0, 0.1, 0.2, 0.4, 0.5, 0.5, 0.5, 0.8, 0.8, 0.8, 0.7, 0.7, 0.6, 0.5, 0.5, 0.7, 0.6, 1.1, 1.1, 1.2, 1.2, 1, 0.5],
             crossGive: [0, 0.1, 0.1, 0.3, 0.2, 0.2, 0.2, 0.3, 0.3, 0.6, 0.5, 0.4, 0.6, 0.3, 0.5, 0.5, 0.5, 0.6, 0.6, 0.6, 0.6, 0.6, 0.5],
             crossBack: [0.1, 0.5, 0.6, 0.7, 0.9, 1.1, 1.2, 0.8, 0.8, 0.9, 0.6, 0.6, 0.7, 0.7, 1, 1.1, 1.2, 1.3, 1.3, 1.1, 1, 0.8, 0.6],
@@ -141,8 +145,9 @@ class ThreeDPage extends Component {
                 rowBack: [value]
             },
             mes: 'inTemp',
+            deviceSelected: 'inTemp',
             jqMes: 'crossGive',
-            info: []
+            info: [],
         }
     }
 
@@ -242,6 +247,10 @@ class ThreeDPage extends Component {
                 data.inTemp = data.inTemp.slice(1, data.inTemp.length);
             }
             var now = new Date();
+            let info = [{
+                time: '',
+                text: '预警信息'
+            }];
             [{data, stand: this.reyaStand}, {data: data2, stand: this.jqStand}].map(obj => {
                 let d = obj.data, stand = obj.stand, map = obj.map;
                 for (let key in d) {
@@ -250,19 +259,14 @@ class ThreeDPage extends Component {
                     }
                     let formatValue = this.values[key][this.values.index] * 100 / stand[key];
                     if (formatValue >= 100) {
-                        let info = _.cloneDeep(this.state.info);
-                        if (info.length >= 3) {
-                            info = info.slice(1, info.length);
-                        }
                         if (_.map(info, 'mes').indexOf(key) === -1) {
                             info.push({
-                                time: `${now.getHours()}:${now.getMinutes()}:${now.getSeconds().length===1?0+now.getSeconds():now.getSeconds()}`,
-                                text: this.getMesName(key) + '值超出标准值，请注意！',
+                                time: `${now.getHours()}:
+                                ${now.getMinutes()<10 ? '0' + now.getMinutes() : now.getMinutes()}:
+                                ${now.getSeconds()<10 ? '0' + now.getSeconds() : now.getSeconds()}  `,
+                                text: this.getMesName(key) + '超出标准值，请注意！',
                                 mes: key
                             });
-                            this.setState({
-                                info
-                            })
                         }
                     }
                     d[key].push({
@@ -279,7 +283,7 @@ class ThreeDPage extends Component {
             if (this.values.index === this.values.inTemp.length) {
                 this.values.index = 0;
             }
-            this.setState({data, data2});
+            this.setState({data, data2, info});
             this.refresh3DModel();
         }, 1000)
     }
@@ -305,6 +309,7 @@ class ThreeDPage extends Component {
     }
 
     render() {
+        console.log(this.values[this.state.deviceSelected])
         return (
             <div id="3d-page" style={{
                 height: '100%',
@@ -319,11 +324,16 @@ class ThreeDPage extends Component {
                     <div className="message-box-content message-box-content-child">生产班组：A组</div>
                     <div className="message-box-content message-box-content-child">在产产品：木板</div>
                 </div>
+                <div id="message-right" className="message-box">
+                    <div className="message-box-content">{`当前设备信息：${this.getMesName(this.state.deviceSelected)}`}</div>
+                    <div className="message-box-content message-box-content-child">{`当前值：${this.values[this.state.deviceSelected][this.values.index].toFixed(2)}`}</div>
+                    <div className="message-box-content message-box-content-child">{`标准值：${this.reyaStand[this.state.deviceSelected]||this.jqStand[this.state.deviceSelected]}`}</div>
+                </div>
                 <div id="chart-container-left-top" className="chart-container"></div>
                 <div id="chart-container-left-bottom" className="chart-container"></div>
-                <div id="message-right" className="message-box">
+                <div id="message-right-2" className="message-box">
                     {this.state.info.map((i) => {
-                        return <div className="message-box-content">{i.time + ':' + i.text}</div>
+                        return <div className="message-box-content">{i.time + i.text}</div>
                     })}
                 </div>
                 <div id="chart-container-right-top" className="chart-container"></div>
