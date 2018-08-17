@@ -309,7 +309,6 @@ class ThreeDPage extends Component {
     }
 
     render() {
-        console.log(this.values[this.state.deviceSelected])
         return (
             <div id="3d-page" style={{
                 height: '100%',

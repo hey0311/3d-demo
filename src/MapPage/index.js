@@ -9,6 +9,7 @@ import './index.css';
 
 class MapPage extends Component {
     componentWillReceiveProps(p){
+        //当从3d页切换到地图页，需要重新resize echarts图形
         if(!p.hide){
             this.resizeAfterUpdate=true;
         }

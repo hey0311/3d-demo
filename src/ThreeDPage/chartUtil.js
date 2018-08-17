@@ -6,7 +6,6 @@ const axisFontSize = 16;
 const chartTitleSize = 20;
 const chartBkColor = 'rgba(128, 128, 128, 0)';
 export const renderBarChart = (myChart, data, threeConfig, modelMap, title) => {
-    // var myChart = echarts.init(document.getElementById(chartId));
     let sdata = [], xAxisData = [];
     for (let key in data) {
         sdata.push({

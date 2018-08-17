@@ -4,6 +4,9 @@
     <list default="true" id="636c591c-2f88-4c22-ac2d-300a0ff5d619" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App.js" afterPath="$PROJECT_DIR$/src/App.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MapPage/index.js" afterPath="$PROJECT_DIR$/src/MapPage/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ThreeDPage/chartUtil.js" afterPath="$PROJECT_DIR$/src/ThreeDPage/chartUtil.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ThreeDPage/index.js" afterPath="$PROJECT_DIR$/src/ThreeDPage/index.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -17,11 +20,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ThreeDPage/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="308" column="4" lean-forward="false" selection-start-line="308" selection-start-column="4" selection-end-line="308" selection-end-column="4" />
+            <state relative-caret-position="216">
+              <caret line="137" column="36" lean-forward="true" selection-start-line="137" selection-start-column="36" selection-end-line="137" selection-end-column="36" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -39,11 +42,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="App.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="14" column="26" lean-forward="true" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+            <state relative-caret-position="600">
+              <caret line="28" column="20" lean-forward="false" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -52,20 +55,20 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/MapPage/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="11" column="19" lean-forward="false" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+            <state relative-caret-position="312">
+              <caret line="13" column="40" lean-forward="true" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
-                <element signature="e#6425#7090#0" expanded="false" />
-                <element signature="e#7121#8207#0" expanded="false" />
-                <element signature="e#8234#10234#0" expanded="false" />
-                <element signature="e#12687#13237#0" expanded="false" />
-                <element signature="e#13262#13318#0" expanded="false" />
-                <marker date="1534448229794" expanded="true" signature="12239:12319" ph="..." />
-                <marker date="1534448229794" expanded="true" signature="12406:12486" ph="..." />
-                <marker date="1534448229794" expanded="true" signature="12554:12630" ph="..." />
-                <marker date="1534448229794" expanded="true" signature="23784:23795" ph="..." />
-                <marker date="1534448229794" expanded="true" signature="23986:23997" ph="..." />
+                <element signature="e#6468#7133#0" expanded="false" />
+                <element signature="e#7164#8250#0" expanded="false" />
+                <element signature="e#8277#10277#0" expanded="false" />
+                <element signature="e#12730#13280#0" expanded="false" />
+                <element signature="e#13305#13361#0" expanded="false" />
+                <marker date="1534516210313" expanded="true" signature="12282:12362" ph="..." />
+                <marker date="1534516210313" expanded="true" signature="12449:12529" ph="..." />
+                <marker date="1534516210313" expanded="true" signature="12597:12673" ph="..." />
+                <marker date="1534516210313" expanded="true" signature="23827:23838" ph="..." />
+                <marker date="1534516210313" expanded="true" signature="24029:24040" ph="..." />
               </folding>
             </state>
           </provider>
@@ -109,8 +112,8 @@
       <file leaf-file-name="chartUtil.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ThreeDPage/chartUtil.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="25" column="84" lean-forward="true" selection-start-line="25" selection-start-column="84" selection-end-line="25" selection-end-column="84" />
+            <state relative-caret-position="192">
+              <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="e#21#50#0" expanded="true" />
@@ -169,13 +172,13 @@
         <option value="$PROJECT_DIR$/src/MapPage/index.css" />
         <option value="$PROJECT_DIR$/src/App.css" />
         <option value="$PROJECT_DIR$/public/index.html" />
-        <option value="$PROJECT_DIR$/src/MapPage/index.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/config/paths.js" />
-        <option value="$PROJECT_DIR$/src/ThreeDPage/chartUtil.js" />
         <option value="$PROJECT_DIR$/src/ThreeDPage/index.css" />
-        <option value="$PROJECT_DIR$/src/ThreeDPage/index.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
+        <option value="$PROJECT_DIR$/src/ThreeDPage/index.js" />
+        <option value="$PROJECT_DIR$/src/MapPage/index.js" />
+        <option value="$PROJECT_DIR$/src/ThreeDPage/chartUtil.js" />
       </list>
     </option>
   </component>
@@ -316,7 +319,7 @@
       <updated>1534398451319</updated>
       <workItem from="1534398452433" duration="11154000" />
       <workItem from="1534421877422" duration="26387000" />
-      <workItem from="1534480203535" duration="18123000" />
+      <workItem from="1534480203535" duration="18686000" />
     </task>
     <task id="LOCAL-00001" summary="配置react环境">
       <created>1534398725695</created>
@@ -493,11 +496,18 @@
       <option name="project" value="LOCAL" />
       <updated>1534515170777</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="地图页置前">
+      <created>1534515669459</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1534515669459</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="55664000" />
+    <option name="totallyTimeSpent" value="56227000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1858" height="1098" extended-state="6" />
@@ -530,7 +540,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="添加地图页" />
     <MESSAGE value="添加3d页" />
     <MESSAGE value="添加3d页的echarts图" />
     <MESSAGE value="echarts图动起来" />
@@ -555,7 +564,8 @@
     <MESSAGE value="添加两个信息框" />
     <MESSAGE value="优化预警信息" />
     <MESSAGE value="增加当前设备信息窗口" />
-    <option name="LAST_COMMIT_MESSAGE" value="增加当前设备信息窗口" />
+    <MESSAGE value="地图页置前" />
+    <option name="LAST_COMMIT_MESSAGE" value="地图页置前" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -588,16 +598,16 @@
           <caret line="615" column="37" lean-forward="false" selection-start-line="615" selection-start-column="37" selection-end-line="615" selection-end-column="37" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
-            <element signature="e#6425#7090#0" expanded="false" />
-            <element signature="e#7121#8207#0" expanded="false" />
-            <element signature="e#8234#10234#0" expanded="false" />
-            <element signature="e#12687#13237#0" expanded="false" />
-            <element signature="e#13262#13318#0" expanded="false" />
-            <marker date="1534448229794" expanded="true" signature="12239:12319" ph="..." />
-            <marker date="1534448229794" expanded="true" signature="12406:12486" ph="..." />
-            <marker date="1534448229794" expanded="true" signature="12554:12630" ph="..." />
-            <marker date="1534448229794" expanded="true" signature="23784:23795" ph="..." />
-            <marker date="1534448229794" expanded="true" signature="23986:23997" ph="..." />
+            <element signature="e#6468#7133#0" expanded="false" />
+            <element signature="e#7164#8250#0" expanded="false" />
+            <element signature="e#8277#10277#0" expanded="false" />
+            <element signature="e#12730#13280#0" expanded="false" />
+            <element signature="e#13305#13361#0" expanded="false" />
+            <marker date="1534516210313" expanded="true" signature="12282:12362" ph="..." />
+            <marker date="1534516210313" expanded="true" signature="12449:12529" ph="..." />
+            <marker date="1534516210313" expanded="true" signature="12597:12673" ph="..." />
+            <marker date="1534516210313" expanded="true" signature="23827:23838" ph="..." />
+            <marker date="1534516210313" expanded="true" signature="24029:24040" ph="..." />
           </folding>
         </state>
       </provider>
@@ -935,48 +945,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/MapPage/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="11" column="19" lean-forward="false" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-            <element signature="e#6425#7090#0" expanded="false" />
-            <element signature="e#7121#8207#0" expanded="false" />
-            <element signature="e#8234#10234#0" expanded="false" />
-            <element signature="e#12687#13237#0" expanded="false" />
-            <element signature="e#13262#13318#0" expanded="false" />
-            <marker date="1534448229794" expanded="true" signature="12239:12319" ph="..." />
-            <marker date="1534448229794" expanded="true" signature="12406:12486" ph="..." />
-            <marker date="1534448229794" expanded="true" signature="12554:12630" ph="..." />
-            <marker date="1534448229794" expanded="true" signature="23784:23795" ph="..." />
-            <marker date="1534448229794" expanded="true" signature="23986:23997" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ThreeDPage/threeUtil.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2739">
-          <caret line="29" column="7" lean-forward="false" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#21#58#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ThreeDPage/chartUtil.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="25" column="84" lean-forward="true" selection-start-line="25" selection-start-column="84" selection-end-line="25" selection-end-column="84" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#21#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ThreeDPage/util.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1563">
@@ -995,21 +963,63 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ThreeDPage/index.js">
+    <entry file="file://$PROJECT_DIR$/src/ThreeDPage/threeUtil.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="308" column="4" lean-forward="false" selection-start-line="308" selection-start-column="4" selection-end-line="308" selection-end-column="4" />
+        <state relative-caret-position="-2739">
+          <caret line="29" column="7" lean-forward="false" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
           <folding>
-            <element signature="e#0#39#0" expanded="true" />
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#21#58#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="14" column="26" lean-forward="true" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+        <state relative-caret-position="600">
+          <caret line="28" column="20" lean-forward="false" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/MapPage/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="13" column="40" lean-forward="true" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#6468#7133#0" expanded="false" />
+            <element signature="e#7164#8250#0" expanded="false" />
+            <element signature="e#8277#10277#0" expanded="false" />
+            <element signature="e#12730#13280#0" expanded="false" />
+            <element signature="e#13305#13361#0" expanded="false" />
+            <marker date="1534516210313" expanded="true" signature="12282:12362" ph="..." />
+            <marker date="1534516210313" expanded="true" signature="12449:12529" ph="..." />
+            <marker date="1534516210313" expanded="true" signature="12597:12673" ph="..." />
+            <marker date="1534516210313" expanded="true" signature="23827:23838" ph="..." />
+            <marker date="1534516210313" expanded="true" signature="24029:24040" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ThreeDPage/chartUtil.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#21#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ThreeDPage/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="137" column="36" lean-forward="true" selection-start-line="137" selection-start-column="36" selection-end-line="137" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

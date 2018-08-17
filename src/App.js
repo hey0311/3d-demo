@@ -7,11 +7,15 @@ class App extends Component {
     constructor(p) {
         super(p);
         this.state = {
-            hideMapPage: false,
-            hide3dPage: true
+            hideMapPage: false,//隐藏地图页
+            hide3dPage: true,//隐藏3d页
         }
     }
 
+    /**
+     * 切换相应的页面内容，通过设置当前页display:block，其他页display:none的方式，以避免每次切换到3d图会重新加载模型。
+     * @param page 要切换的页面名称
+     */
     hidePage = (page) => {
         this.setState({
             hideMapPage: page === 'mapPage',
