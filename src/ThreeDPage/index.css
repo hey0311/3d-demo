@@ -20,7 +20,7 @@
 }
 
 #chart-container-left-top {
-    top: 15%;
+    top: 27%;
     left: 2%;
 }
 
@@ -74,4 +74,33 @@ h3 {
     background-clip: content-box;
     background-color: #070b0c;
     border-radius: 20px;
+}
+#message-right{
+    right:2%;
+    bottom: 43%;
+}
+#message-left{
+    left:2%;
+    top: 15%;
+}
+.message-box {
+    height: 10%;
+    width: 20%;
+    overflow: auto;
+    position: absolute;
+    border: none;
+    background: url("../res/chartBk.png");
+    background-size: 118% 193%;
+    background-position: 51% -159%;
+    background-clip: content-box;
+    background-color: #070b0c;
+    border-radius: 20px;
+}
+.message-box-content{
+    margin-top:10px;
+    margin-left: 20px;
+    color:#fff;
+}
+.message-box-content-child{
+    padding-left: 20px;
 }

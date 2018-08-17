@@ -142,6 +142,7 @@ class ThreeDPage extends Component {
             },
             mes: 'inTemp',
             jqMes: 'crossGive',
+            info: []
         }
     }
 
@@ -220,6 +221,19 @@ class ThreeDPage extends Component {
         return newPoints;
     }
 
+    getMesName(mes) {
+        let map = {
+            inTemp: '入口温度',
+            centerTemp: '中部温度',
+            outTemp: '出口温度',
+            crossGive: '纵锯进给',
+            crossBack: '纵锯回程',
+            rowGive: '横锯进给',
+            rowBack: '横锯回程'
+        }
+        return map[mes];
+    }
+
     refreshChart() {
         setInterval(() => {
             let data = _.cloneDeep(this.state.data);
@@ -229,19 +243,35 @@ class ThreeDPage extends Component {
             }
             var now = new Date();
             [{data, stand: this.reyaStand}, {data: data2, stand: this.jqStand}].map(obj => {
-                let d = obj.data, stand = obj.stand;
+                let d = obj.data, stand = obj.stand, map = obj.map;
                 for (let key in d) {
                     if (d[key].length > 50) {
                         d[key] = d[key].slice(1, d[key].length);
                     }
-                    console.log(this.values)
+                    let formatValue = this.values[key][this.values.index] * 100 / stand[key];
+                    if (formatValue >= 100) {
+                        let info = _.cloneDeep(this.state.info);
+                        if (info.length >= 3) {
+                            info = info.slice(1, info.length);
+                        }
+                        if (_.map(info, 'mes').indexOf(key) === -1) {
+                            info.push({
+                                time: `${now.getHours()}:${now.getMinutes()}:${now.getSeconds().length===1?0+now.getSeconds():now.getSeconds()}`,
+                                text: this.getMesName(key) + '值超出标准值，请注意！',
+                                mes: key
+                            });
+                            this.setState({
+                                info
+                            })
+                        }
+                    }
                     d[key].push({
                         name: now.toString(),
                         value: [
                             now,
                             this.values[key][this.values.index]
                         ],
-                        formatValue: this.values[key][this.values.index] * 100 / stand[key]
+                        formatValue
                     });
                 }
             });
@@ -284,8 +314,18 @@ class ThreeDPage extends Component {
                 display: this.props.hide ? 'none' : 'block'
             }}>
                 <div id="three-container"></div>
+                <div id="message-left" className="message-box">
+                    <div className="message-box-content">基本信息</div>
+                    <div className="message-box-content message-box-content-child">生产班组：A组</div>
+                    <div className="message-box-content message-box-content-child">在产产品：木板</div>
+                </div>
                 <div id="chart-container-left-top" className="chart-container"></div>
                 <div id="chart-container-left-bottom" className="chart-container"></div>
+                <div id="message-right" className="message-box">
+                    {this.state.info.map((i) => {
+                        return <div className="message-box-content">{i.time + ':' + i.text}</div>
+                    })}
+                </div>
                 <div id="chart-container-right-top" className="chart-container"></div>
                 <div id="chart-container-right-bottom" className="chart-container"></div>
                 <input type="button" id="goto-main" onClick={this.props.hidePage} value="返回主界面"/>
