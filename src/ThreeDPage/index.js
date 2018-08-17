@@ -102,69 +102,46 @@ class ThreeDPage extends Component {
             rowGive: 32,
             rowBack: 40
         };
+        this.values = {
+            index: 0
+        };
+        this.points = {
+            inTemp: [0, 0.3, 0.7, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.2, 1, 0.9, 0.8, 0.9, 0.8, 0.7, 0.6, 0.6, 0.5, 0.5, 0.4, 0.2, 0.1],
+            centerTemp: [0, 0.1, 0.2, 0.4, 0.5, 0.8, 0.9, 0.9, 0.7, 0.7, 1, 1.2, 1.2, 1.2, 0.8, 0.7, 0.6, 0.6, 0.5, 0.5, 0.4, 0.2, 0.1],
+            outTemp: [0, 0.1, 0.2, 0.4, 0.5, 0.5, 0.5, 0.8, 0.8, 0.8, 0.7, 0.7, 0.6, 0.5, 0.5, 0.7, 0.6, 1.1, 1.1, 1.2, 1.2, 1, 0.5],
+            crossGive: [0, 0.1, 0.1, 0.3, 0.2, 0.2, 0.2, 0.3, 0.3, 0.6, 0.5, 0.4, 0.6, 0.3, 0.5, 0.5, 0.5, 0.6, 0.6, 0.6, 0.6, 0.6, 0.5],
+            crossBack: [0.1, 0.5, 0.6, 0.7, 0.9, 1.1, 1.2, 0.8, 0.8, 0.9, 0.6, 0.6, 0.7, 0.7, 1, 1.1, 1.2, 1.3, 1.3, 1.1, 1, 0.8, 0.6],
+            rowGive: [0.2, 0.1, 0.3, 0.2, 0.2, 0.2, 0.2, 0.3, 0.7, 0.6, 0.8, 0.8, 0.9, 1.1, 1.2, 1, 0.9, 0.8, 0.6, 0.6, 0.6, 0.6, 0.5],
+            rowBack: [0, 0.3, 0.5, 0.5, 0.5, 0.6, 0.3, 0.4, 0.3, 0.7, 0.5, 0.4, 0.8, 0.8, 0.9, 0.9, 0.8, 0.6, 0.6, 0.5, 0.6, 0.6, 0.5],
+        };
+        for (let key in this.reyaStand) {
+            this.values[key] = this.createData(this.reyaStand[key], this.points[key])
+        }
+        for (let key in this.jqStand) {
+            this.values[key] = this.createData(this.jqStand[key], this.points[key])
+        }
+        let value = {
+            name: now.toString(),
+            value: [
+                now,
+                0
+            ],
+            formatValue: 0
+        };
         this.state = {
             data: {
-                inTemp: [{
-                    name: now.toString(),
-                    value: [
-                        now,
-                        Math.random() * 100
-                    ],
-                    formatValue: Math.random() * 100
-                }],
-                centerTemp: [{
-                    name: now.toString(),
-                    value: [
-                        now,
-                        Math.random() * 100
-                    ],
-                    formatValue: Math.random() * 100
-                }],
-                outTemp: [{
-                    name: now.toString(),
-                    value: [
-                        now,
-                        Math.random() * 100
-                    ],
-                    formatValue: Math.random() * 100
-                }]
+                inTemp: [value],
+                centerTemp: [value],
+                outTemp: [value]
+            },
+            data2: {
+                crossGive: [value],
+                crossBack: [value],
+                rowGive: [value],
+                rowBack: [value]
             },
             mes: 'inTemp',
             jqMes: 'crossGive',
-            data2: {
-                crossGive: [{
-                    name: now.toString(),
-                    value: [
-                        now,
-                        Math.random() * 30
-                    ],
-                    formatValue: Math.random() * 30
-                }],
-                crossBack: [{
-                    name: now.toString(),
-                    value: [
-                        now,
-                        Math.random() * 30
-                    ],
-                    formatValue: Math.random() * 30
-                }],
-                rowGive: [{
-                    name: now.toString(),
-                    value: [
-                        now,
-                        Math.random() * 30
-                    ],
-                    formatValue: Math.random() * 30
-                }],
-                rowBack: [{
-                    name: now.toString(),
-                    value: [
-                        now,
-                        Math.random() * 30
-                    ],
-                    formatValue: Math.random() * 30
-                }]
-            }
         }
     }
 
@@ -203,18 +180,18 @@ class ThreeDPage extends Component {
         });
         chartUtil.renderBarChart(this.myChart_right_top, this.state.data, this.threeConfig, this.reyaModelMap, '热压设备温度总体情况');
         chartUtil.renderBarChart(this.myChart_left_top, this.state.data2, this.threeConfig, this.jqModelMap, '锯切速度总体情况');
-        chartUtil.renderLineChart(this.myChart_right_bottom, this.state.data, this.state.mes, this.reyaModelMap, reyaTitle+'趋势(度)', this.reyaStand);
-        chartUtil.renderLineChart(this.myChart_left_bottom, this.state.data2, this.state.jqMes, this.jqModelMap, jqTitle+'速度趋势(r/s)', this.jqStand);
+        chartUtil.renderLineChart(this.myChart_right_bottom, this.state.data, this.state.mes, this.reyaModelMap, reyaTitle + '趋势(度)', this.reyaStand);
+        chartUtil.renderLineChart(this.myChart_left_bottom, this.state.data2, this.state.jqMes, this.jqModelMap, jqTitle + '速度趋势(r/s)', this.jqStand);
     }
 
     componentDidMount() {
         threeUtil.render3d(this.threeConfig);
         this.myChart_right_top = echarts.init(document.getElementById('chart-container-right-top'));
-        this.myChart_right_top.on('click', (params)=> {
+        this.myChart_right_top.on('click', (params) => {
             this.threeConfig.chartItemClickedFn(params.name);
         });
         this.myChart_left_top = echarts.init(document.getElementById('chart-container-left-top'));
-        this.myChart_left_top.on('click', (params)=> {
+        this.myChart_left_top.on('click', (params) => {
             this.threeConfig.chartItemClickedFn(params.name);
         });
         this.myChart_right_bottom = echarts.init(document.getElementById('chart-container-right-bottom'));
@@ -231,6 +208,18 @@ class ThreeDPage extends Component {
         this.renderChart(true);
     }
 
+    createData(standValue, points) {
+        let stepNumber = 10;
+        let newPoints = [];
+        for (let i = 1; i < points.length; i++) {
+            let delta = (points[i] - points[i - 1]) / stepNumber;
+            for (let j = 0; j < stepNumber; j++) {
+                newPoints.push((points[i - 1] + j * delta) * standValue);
+            }
+        }
+        return newPoints;
+    }
+
     refreshChart() {
         setInterval(() => {
             let data = _.cloneDeep(this.state.data);
@@ -238,32 +227,28 @@ class ThreeDPage extends Component {
             if (data.inTemp.length > 50) {
                 data.inTemp = data.inTemp.slice(1, data.inTemp.length);
             }
-            data.inTemp.push(randomData(data.inTemp, 'inTemp'));
-            if (data.centerTemp.length > 50) {
-                data.centerTemp = data.centerTemp.slice(1, data.centerTemp.length);
+            var now = new Date();
+            [{data, stand: this.reyaStand}, {data: data2, stand: this.jqStand}].map(obj => {
+                let d = obj.data, stand = obj.stand;
+                for (let key in d) {
+                    if (d[key].length > 50) {
+                        d[key] = d[key].slice(1, d[key].length);
+                    }
+                    console.log(this.values)
+                    d[key].push({
+                        name: now.toString(),
+                        value: [
+                            now,
+                            this.values[key][this.values.index]
+                        ],
+                        formatValue: this.values[key][this.values.index] * 100 / stand[key]
+                    });
+                }
+            });
+            this.values.index++;
+            if (this.values.index === this.values.inTemp.length) {
+                this.values.index = 0;
             }
-            data.centerTemp.push(randomData(data.centerTemp, 'centerTemp'));
-            if (data.outTemp.length > 50) {
-                data.outTemp = data.outTemp.slice(1, data.outTemp.length);
-            }
-            data.outTemp.push(randomData(data.outTemp, 'outTemp'));
-            //锯切数据
-            if (data2.crossGive.length > 50) {
-                data2.crossGive = data2.crossGive.slice(1, data2.crossGive.length);
-            }
-            data2.crossGive.push(randomData(data2.crossGive, 'crossGive'));
-            if (data2.crossBack.length > 50) {
-                data2.crossBack = data2.crossBack.slice(1, data2.crossBack.length);
-            }
-            data2.crossBack.push(randomData(data2.crossBack, 'crossBack'));
-            if (data2.rowGive.length > 50) {
-                data2.rowGive = data2.rowGive.slice(1, data2.rowGive.length);
-            }
-            data2.rowGive.push(randomData(data2.rowGive, 'rowGive'));
-            if (data2.rowBack.length > 50) {
-                data2.rowBack = data2.rowBack.slice(1, data2.rowBack.length);
-            }
-            data2.rowBack.push(randomData(data2.rowBack, 'rowBack'));
             this.setState({data, data2});
             this.refresh3DModel();
         }, 1000)
