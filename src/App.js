@@ -7,23 +7,16 @@ class App extends Component {
     constructor(p) {
         super(p);
         this.state = {
-            hideMapPage:true,
-            hide3dPage: false
+            hideMapPage: false,
+            hide3dPage: true
         }
     }
 
     hidePage = (page) => {
-        if (page === 'mapPage') {
-            this.setState({
-                hideMapPage: true,
-                hide3dPage: false
-            })
-        } else {
-            this.setState({
-                hideMapPage: false,
-                hide3dPage: true
-            })
-        }
+        this.setState({
+            hideMapPage: page === 'mapPage',
+            hide3dPage: page === '3dPage'
+        })
     };
 
     render() {

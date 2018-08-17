@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="636c591c-2f88-4c22-ac2d-300a0ff5d619" name="Default" comment="优化预警信息">
+    <list default="true" id="636c591c-2f88-4c22-ac2d-300a0ff5d619" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ThreeDPage/index.css" afterPath="$PROJECT_DIR$/src/ThreeDPage/index.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ThreeDPage/index.js" afterPath="$PROJECT_DIR$/src/ThreeDPage/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App.js" afterPath="$PROJECT_DIR$/src/App.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -18,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ThreeDPage/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="316" column="36" lean-forward="false" selection-start-line="316" selection-start-column="36" selection-end-line="316" selection-end-column="36" />
+            <state relative-caret-position="88">
+              <caret line="308" column="4" lean-forward="false" selection-start-line="308" selection-start-column="4" selection-end-line="308" selection-end-column="4" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -40,11 +39,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="App.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="264">
-              <caret line="14" column="25" lean-forward="false" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
+              <caret line="14" column="26" lean-forward="true" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -173,10 +172,10 @@
         <option value="$PROJECT_DIR$/src/MapPage/index.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/config/paths.js" />
-        <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/ThreeDPage/chartUtil.js" />
         <option value="$PROJECT_DIR$/src/ThreeDPage/index.css" />
         <option value="$PROJECT_DIR$/src/ThreeDPage/index.js" />
+        <option value="$PROJECT_DIR$/src/App.js" />
       </list>
     </option>
   </component>
@@ -317,7 +316,7 @@
       <updated>1534398451319</updated>
       <workItem from="1534398452433" duration="11154000" />
       <workItem from="1534421877422" duration="26387000" />
-      <workItem from="1534480203535" duration="17632000" />
+      <workItem from="1534480203535" duration="18123000" />
     </task>
     <task id="LOCAL-00001" summary="配置react环境">
       <created>1534398725695</created>
@@ -487,11 +486,18 @@
       <option name="project" value="LOCAL" />
       <updated>1534512889743</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="增加当前设备信息窗口">
+      <created>1534515170777</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1534515170777</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="55173000" />
+    <option name="totallyTimeSpent" value="55664000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1858" height="1098" extended-state="6" />
@@ -524,7 +530,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="配置react环境" />
     <MESSAGE value="添加地图页" />
     <MESSAGE value="添加3d页" />
     <MESSAGE value="添加3d页的echarts图" />
@@ -549,7 +554,8 @@
     <MESSAGE value="修改数据" />
     <MESSAGE value="添加两个信息框" />
     <MESSAGE value="优化预警信息" />
-    <option name="LAST_COMMIT_MESSAGE" value="优化预警信息" />
+    <MESSAGE value="增加当前设备信息窗口" />
+    <option name="LAST_COMMIT_MESSAGE" value="增加当前设备信息窗口" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -949,14 +955,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="14" column="25" lean-forward="false" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ThreeDPage/threeUtil.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2739">
@@ -999,11 +997,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ThreeDPage/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="316" column="36" lean-forward="false" selection-start-line="316" selection-start-column="36" selection-end-line="316" selection-end-column="36" />
+        <state relative-caret-position="88">
+          <caret line="308" column="4" lean-forward="false" selection-start-line="308" selection-start-column="4" selection-end-line="308" selection-end-column="4" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="14" column="26" lean-forward="true" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
+          <folding />
         </state>
       </provider>
     </entry>
