@@ -3,10 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="636c591c-2f88-4c22-ac2d-300a0ff5d619" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/App.js" afterPath="$PROJECT_DIR$/src/App.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/MapPage/index.js" afterPath="$PROJECT_DIR$/src/MapPage/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ThreeDPage/chartUtil.js" afterPath="$PROJECT_DIR$/src/ThreeDPage/chartUtil.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ThreeDPage/index.js" afterPath="$PROJECT_DIR$/src/ThreeDPage/index.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ThreeDPage/index.css" afterPath="$PROJECT_DIR$/src/ThreeDPage/index.css" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,11 +17,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ThreeDPage/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="137" column="36" lean-forward="true" selection-start-line="137" selection-start-column="36" selection-end-line="137" selection-end-column="36" />
+            <state relative-caret-position="-2204">
+              <caret line="103" column="25" lean-forward="false" selection-start-line="103" selection-start-column="25" selection-end-line="103" selection-end-column="25" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -45,8 +42,8 @@
       <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/App.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="600">
-              <caret line="28" column="20" lean-forward="false" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
+            <state relative-caret-position="384">
+              <caret line="19" column="23" lean-forward="true" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -86,11 +83,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ThreeDPage/index.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="213">
-              <caret line="83" column="11" lean-forward="false" selection-start-line="83" selection-start-column="11" selection-end-line="83" selection-end-column="11" />
+            <state relative-caret-position="381">
+              <caret line="34" column="24" lean-forward="true" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -174,11 +171,11 @@
         <option value="$PROJECT_DIR$/public/index.html" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/config/paths.js" />
-        <option value="$PROJECT_DIR$/src/ThreeDPage/index.css" />
         <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/ThreeDPage/index.js" />
         <option value="$PROJECT_DIR$/src/MapPage/index.js" />
         <option value="$PROJECT_DIR$/src/ThreeDPage/chartUtil.js" />
+        <option value="$PROJECT_DIR$/src/ThreeDPage/index.css" />
       </list>
     </option>
   </component>
@@ -319,7 +316,7 @@
       <updated>1534398451319</updated>
       <workItem from="1534398452433" duration="11154000" />
       <workItem from="1534421877422" duration="26387000" />
-      <workItem from="1534480203535" duration="18686000" />
+      <workItem from="1534480203535" duration="20019000" />
     </task>
     <task id="LOCAL-00001" summary="配置react环境">
       <created>1534398725695</created>
@@ -503,17 +500,24 @@
       <option name="project" value="LOCAL" />
       <updated>1534515669459</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="微调">
+      <created>1534516222903</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1534516222903</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="56227000" />
+    <option name="totallyTimeSpent" value="57560000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1858" height="1098" extended-state="6" />
+    <frame x="-9" y="-9" width="1874" height="1098" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15984297" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15842135" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Quick Notes" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -540,7 +544,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="添加3d页" />
     <MESSAGE value="添加3d页的echarts图" />
     <MESSAGE value="echarts图动起来" />
     <MESSAGE value="添加趋势图" />
@@ -565,7 +568,8 @@
     <MESSAGE value="优化预警信息" />
     <MESSAGE value="增加当前设备信息窗口" />
     <MESSAGE value="地图页置前" />
-    <option name="LAST_COMMIT_MESSAGE" value="地图页置前" />
+    <MESSAGE value="微调" />
+    <option name="LAST_COMMIT_MESSAGE" value="微调" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -955,14 +959,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ThreeDPage/index.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="83" column="11" lean-forward="false" selection-start-line="83" selection-start-column="11" selection-end-line="83" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ThreeDPage/threeUtil.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2739">
@@ -974,10 +970,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/ThreeDPage/chartUtil.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="e#21#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="600">
-          <caret line="28" column="20" lean-forward="false" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
+        <state relative-caret-position="384">
+          <caret line="19" column="23" lean-forward="true" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
           <folding />
         </state>
       </provider>
@@ -1002,24 +1009,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ThreeDPage/chartUtil.js">
+    <entry file="file://$PROJECT_DIR$/src/ThreeDPage/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="8" column="0" lean-forward="false" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+        <state relative-caret-position="-2204">
+          <caret line="103" column="25" lean-forward="false" selection-start-line="103" selection-start-column="25" selection-end-line="103" selection-end-column="25" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
-            <element signature="e#21#50#0" expanded="true" />
+            <element signature="e#0#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ThreeDPage/index.js">
+    <entry file="file://$PROJECT_DIR$/src/ThreeDPage/index.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="137" column="36" lean-forward="true" selection-start-line="137" selection-start-column="36" selection-end-line="137" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="381">
+          <caret line="34" column="24" lean-forward="true" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>

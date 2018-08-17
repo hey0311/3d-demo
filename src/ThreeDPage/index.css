@@ -10,12 +10,12 @@
 }
 
 #chart-container-right-top {
-    top: 15%;
+    top: 35%;
     right: 2%;
 }
 
 #chart-container-right-bottom {
-    bottom: 10%;
+    bottom: 2%;
     right: 2%;
 }
 
@@ -38,7 +38,7 @@
     color: #000;
     position: absolute;
     bottom: 4%;
-    right: 8%;
+    left: 8%;
     font-weight: bold;
 }
 
@@ -77,11 +77,11 @@ h3 {
 }
 #message-right{
     right:2%;
-    bottom: 43%;
+    top: 23%;
 }
 #message-right-2{
     right:2%;
-    top:2%;
+    top:11%;
 }
 #message-left{
     left:2%;
