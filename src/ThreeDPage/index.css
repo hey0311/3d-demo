@@ -30,16 +30,25 @@
 }
 
 #goto-main {
-    width: 150px;
-    height: 40px;
+    bottom: 4%;
+    left: 4%;
+    width: 6%;
+    height: 4%;
+}
+#reset-model-view{
+    bottom: 4%;
+    left:15%;
+    width: 6%;
+    height: 4%;
+}
+.btn{
+    font-weight: bold;
     background: #1adad9;
     border-radius: 5px;
     font-size: 20px;
     color: #000;
     position: absolute;
-    bottom: 4%;
-    left: 8%;
-    font-weight: bold;
+    cursor:pointer;
 }
 
 h1 {

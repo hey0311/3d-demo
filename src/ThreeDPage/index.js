@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './index.css';
 import * as threeUtil from "./threeUtil";
 import * as chartUtil from "./chartUtil"
-import {randomData, setWarning} from "./util"
+import {setCameraPosition, setWarning} from "./util"
 import _ from 'lodash'
 import echarts from 'echarts'
 
@@ -110,12 +110,12 @@ class ThreeDPage extends Component {
             index: 0
         };
         this.points = {
-            inTemp: [0, 0.3, 0.7, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.2, 1, 1.1, 1, 0.9, 0.8, 0.7, 0.6, 0.6, 0.5, 0.5, 0.4, 0.2, 0.1],
-            centerTemp: [0, 0.1, 0.2, 0.4, 0.5, 0.8, 0.9, 0.9, 1, 1, 1, 1.2, 1.2, 1.2, 0.8, 0.7, 0.6, 0.6, 0.5, 0.5, 0.4, 0.2, 0.1],
+            inTemp: [1.2 , 1.1, 1, 0.9, 0.8, 0.9, 1.1, 1.3, 1.4, 1.2, 1, 1.1, 1, 0.9, 0.8, 0.7, 0.6, 0.6, 0.5, 0.5, 0.4, 0.2, 0.1],
+            centerTemp: [0, 0.1, 0.2, 0.4, 0.5, 0.8, 1, 1.1, 1, 1, 1, 1.2, 1.2, 1.2, 0.8, 0.7, 0.6, 0.6, 0.5, 0.5, 0.4, 0.2, 0.1],
             outTemp: [0, 0.1, 0.2, 0.4, 0.5, 0.5, 0.5, 0.8, 0.8, 0.8, 0.7, 0.7, 0.6, 0.5, 0.5, 0.7, 0.6, 1.1, 1.1, 1.2, 1.2, 1, 0.5],
             crossGive: [0, 0.1, 0.1, 0.3, 0.2, 0.2, 0.2, 0.3, 0.3, 0.6, 0.5, 0.4, 0.6, 0.3, 0.5, 0.5, 0.5, 0.6, 0.6, 0.6, 0.6, 0.6, 0.5],
-            crossBack: [0.1, 0.5, 0.6, 0.7, 0.9, 1.1, 1.2, 0.8, 0.8, 0.9, 0.6, 0.6, 0.7, 0.7, 1, 1.1, 1.2, 1.3, 1.3, 1.1, 1, 0.8, 0.6],
-            rowGive: [0.2, 0.1, 0.3, 0.2, 0.2, 0.2, 0.2, 0.3, 0.7, 0.6, 0.8, 0.8, 0.9, 1.1, 1.2, 1, 0.9, 0.8, 0.6, 0.6, 0.6, 0.6, 0.5],
+            crossBack: [0.1, 0.5, 1, 1.1, 1.2, 1.1, 1.2, 0.8, 0.8, 0.9, 0.6, 0.6, 0.7, 0.7, 1, 1.1, 1.2, 1.3, 1.3, 1.1, 1, 0.8, 0.6],
+            rowGive: [0.9, 0.9, 0.8, 0.7, 0.6, 0.3, 0.2, 0.3, 0.7, 0.6, 0.8, 0.8, 0.9, 1.1, 1.2, 1, 0.9, 0.8, 0.6, 0.6, 0.6, 0.6, 0.5],
             rowBack: [0, 0.3, 0.5, 0.5, 0.5, 0.6, 0.3, 0.4, 0.3, 0.7, 0.5, 0.4, 0.8, 0.8, 0.9, 0.9, 0.8, 0.6, 0.6, 0.5, 0.6, 0.6, 0.5],
         };
         for (let key in this.reyaStand) {
@@ -240,7 +240,7 @@ class ThreeDPage extends Component {
     }
 
     refreshChart() {
-        setInterval(() => {
+        this.intervalId=setInterval(() => {
             let data = _.cloneDeep(this.state.data);
             let data2 = _.cloneDeep(this.state.data2);
             if (data.inTemp.length > 50) {
@@ -307,7 +307,14 @@ class ThreeDPage extends Component {
             }
         }
     }
-
+    resetModelView(){
+        this.threeConfig.editor.camera.position.set( 0, 5, 10 );
+        this.threeConfig.editor.camera.lookAt( new window.THREE.Vector3() );
+        setCameraPosition(this.threeConfig.editor);
+    }
+    componentWillUnmount(){
+        clearInterval(this.intervalId);
+    }
     render() {
         return (
             <div id="3d-page" style={{
@@ -337,13 +344,14 @@ class ThreeDPage extends Component {
                 </div>
                 <div id="chart-container-right-top" className="chart-container"></div>
                 <div id="chart-container-right-bottom" className="chart-container"></div>
-                <input type="button" id="goto-main" onClick={this.props.hidePage} value="返回主界面"/>
+                <input type="button" id="goto-main" onClick={this.props.hidePage} className="btn" value="返回主界面"/>
                 <h1>
                     工厂生产实时监控
                 </h1>
                 <h3>
                     Real-time production
                     monitoring</h3>
+                <input type="button" id="reset-model-view" className="btn" onClick={this.resetModelView.bind(this)} value="重置视角"/>
 
             </div>
         );

@@ -7,6 +7,7 @@ import negz from '../images/negz.jpg';
 import posx from '../images/posx.jpg';
 import posy from '../images/posy.jpg';
 import posz from '../images/posz.jpg';
+import {setCameraPosition} from "./util"
 var THREE = window.THREE;
 export const render3d = (threeConfig) => {
     window.URL = window.URL || window.webkitURL;
@@ -121,16 +122,6 @@ function addLight(editor) {
 
 }
 
-function setCameraPosition(editor) {
-    //调整视角
-    editor.camera.position.x += (-27);
-    editor.camera.position.y += (27.45 - 5);
-    editor.camera.position.z += (21.87 - 10);
-    editor.camera.rotation.x += (-51.46 + 26.57) * Math.PI / 180;
-    editor.camera.rotation.y += -(37.35) * Math.PI / 180;
-    editor.camera.rotation.z += -37.43 * Math.PI / 180;
-    editor.signals.cameraChanged.dispatch();
-}
 
 function readTextFile(file, callback) {
     var rawFile = new XMLHttpRequest();

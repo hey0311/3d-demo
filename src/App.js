@@ -6,9 +6,10 @@ import ThreeDPage from "./ThreeDPage/index";
 class App extends Component {
     constructor(p) {
         super(p);
+        console.log(window)
         this.state = {
-            hideMapPage: false,//隐藏地图页
-            hide3dPage: true,//隐藏3d页
+            hideMapPage:false,//隐藏地图页
+            hide3dPage:true,//隐藏3d页
         }
     }
 

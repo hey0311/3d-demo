@@ -29,7 +29,7 @@ var growItem={
     rowGive:0.7,
     rowBack:0.7
 };
-export function randomData(values, type) {
+/*export function randomData(values, type) {
     var now = new Date();
     var random = Math.random();
     var value = 0;
@@ -91,7 +91,7 @@ export function randomData(values, type) {
         ],
         formatValue: formatValue
     }
-}
+}*/
 export function getColor(value) {
     if (value <= 80) {
         return '#00acee';
@@ -100,4 +100,21 @@ export function getColor(value) {
     } else {
         return '#ff0000';
     }
+}
+export function setCameraPosition(editor) {
+        //调整视角
+/*        editor.camera.position.x += (-27);
+        editor.camera.position.y += (27.45 - 5);
+        editor.camera.position.z += (21.87 - 10);
+        editor.camera.rotation.x += (-51.46 + 26.57) * Math.PI / 180;
+        editor.camera.rotation.y += -(37.35) * Math.PI / 180;
+        editor.camera.rotation.z += -37.43 * Math.PI / 180;
+        editor.signals.cameraChanged.dispatch();*/
+    editor.camera.position.x += (-31.56);
+    editor.camera.position.y += (13.62 - 5);
+    editor.camera.position.z += (11.91 - 10);
+    editor.camera.rotation.x += (-48.83 + 26.57) * Math.PI / 180;
+    editor.camera.rotation.y += -(60.18) * Math.PI / 180;
+    editor.camera.rotation.z += -44.77 * Math.PI / 180;
+    editor.signals.cameraChanged.dispatch();
 }
