@@ -54,7 +54,7 @@ class ThreeDPage extends Component {
                     if (d.objName === obj.name) {
                         this.setState({
                             mes: d.mes,
-                            deviceSelected:d.mes
+                            deviceSelected: d.mes
                         })
                     }
                 })
@@ -62,7 +62,7 @@ class ThreeDPage extends Component {
                     if (d.objName === obj.name) {
                         this.setState({
                             jqMes: d.mes,
-                            deviceSelected:d.mes
+                            deviceSelected: d.mes
                         })
                     }
                 })
@@ -76,7 +76,7 @@ class ThreeDPage extends Component {
                         this.focusObjByName(objName);
                         this.setState({
                             mes: map[j].mes,
-                            deviceSelected:map[j].mes
+                            deviceSelected: map[j].mes
                         });
                         return;
                     }
@@ -88,7 +88,7 @@ class ThreeDPage extends Component {
                         this.focusObjByName(objName);
                         this.setState({
                             jqMes: map[j].mes,
-                            deviceSelected:map[j].mes
+                            deviceSelected: map[j].mes
                         });
                         return;
                     }
@@ -110,11 +110,11 @@ class ThreeDPage extends Component {
             index: 0
         };
         this.points = {
-            inTemp: [1.2 , 1.1, 1, 0.9, 0.8, 0.9, 1.1, 1.3, 1.4, 1.2, 1, 1.1, 1, 0.9, 0.8, 0.7, 0.6, 0.6, 0.5, 0.5, 0.4, 0.2, 0.1],
+            inTemp: [1.2, 1.1, 1, 0.9, 0.8, 0.9, 1.1, 1.3, 1.4, 1.2, 1, 1.1, 1, 0.9, 0.8, 0.7, 0.6, 0.6, 0.5, 0.5, 0.4, 0.2, 0.1],
             centerTemp: [0.1, 0.1, 0.2, 0.4, 0.5, 0.8, 1, 1.1, 1, 1, 1, 1.2, 1.2, 1.2, 0.8, 0.7, 0.6, 0.6, 0.5, 0.5, 0.4, 0.2, 0.1],
             outTemp: [0.5, 0.4, 0.3, 0.4, 0.5, 0.5, 0.5, 0.8, 0.8, 0.8, 0.7, 0.7, 0.6, 0.5, 0.5, 0.7, 0.6, 1.1, 1.1, 1.2, 1.2, 1, 0.5],
             crossGive: [0.6, 0.5, 0.4, 0.3, 0.2, 0.2, 0.2, 0.3, 0.3, 0.6, 0.5, 0.4, 0.6, 0.3, 0.5, 0.5, 0.5, 0.6, 0.6, 0.6, 0.6, 0.6, 0.5],
-            crossBack: [0.4, 0.5, 1, 1.1, 1.2, 1.1, 1.2, 0.8, 0.8, 0.9, 0.6, 0.6, 0.7, 0.7, 1, 1.1, 1.2, 1.3, 1.3, 1.1, 1, 0.8, 0.6],
+            crossBack: [0.4, 0.5, 1, 1.1, 1.2, 0.9, 0.8, 0.8, 0.8, 0.9, 0.6, 0.6, 0.7, 0.7, 1, 1.1, 1.2, 1.3, 1.3, 1.1, 1, 0.8, 0.6],
             rowGive: [0.9, 0.9, 0.8, 0.7, 0.6, 0.3, 0.2, 0.3, 0.7, 0.6, 0.8, 0.8, 0.9, 1.1, 1.2, 1, 0.9, 0.8, 0.6, 0.6, 0.6, 0.6, 0.5],
             rowBack: [0.4, 0.3, 0.5, 0.5, 0.5, 0.6, 0.3, 0.4, 0.3, 0.7, 0.5, 0.4, 0.8, 0.8, 0.9, 0.9, 0.8, 0.6, 0.6, 0.5, 0.6, 0.6, 0.5],
         };
@@ -240,7 +240,7 @@ class ThreeDPage extends Component {
     }
 
     refreshChart() {
-        this.intervalId=setInterval(() => {
+        this.intervalId = setInterval(() => {
             let data = _.cloneDeep(this.state.data);
             let data2 = _.cloneDeep(this.state.data2);
             if (data.inTemp.length > 50) {
@@ -262,8 +262,8 @@ class ThreeDPage extends Component {
                         if (_.map(info, 'mes').indexOf(key) === -1) {
                             info.push({
                                 time: `${now.getHours()}:
-                                ${now.getMinutes()<10 ? '0' + now.getMinutes() : now.getMinutes()}:
-                                ${now.getSeconds()<10 ? '0' + now.getSeconds() : now.getSeconds()}  `,
+                                ${now.getMinutes() < 10 ? '0' + now.getMinutes() : now.getMinutes()}:
+                                ${now.getSeconds() < 10 ? '0' + now.getSeconds() : now.getSeconds()}  `,
                                 text: this.getMesName(key) + '超出标准值，请注意！',
                                 mes: key
                             });
@@ -307,14 +307,17 @@ class ThreeDPage extends Component {
             }
         }
     }
-    resetModelView(){
-        this.threeConfig.editor.camera.position.set( 0, 5, 10 );
-        this.threeConfig.editor.camera.lookAt( new window.THREE.Vector3() );
+
+    resetModelView() {
+        this.threeConfig.editor.camera.position.set(0, 5, 10);
+        this.threeConfig.editor.camera.lookAt(new window.THREE.Vector3());
         setCameraPosition(this.threeConfig.editor);
     }
-    componentWillUnmount(){
+
+    componentWillUnmount() {
         clearInterval(this.intervalId);
     }
+
     render() {
         return (
             <div id="3d-page" style={{
@@ -332,8 +335,10 @@ class ThreeDPage extends Component {
                 </div>
                 <div id="message-right" className="message-box">
                     <div className="message-box-content">{`当前设备信息：${this.getMesName(this.state.deviceSelected)}`}</div>
-                    <div className="message-box-content message-box-content-child">{`当前值：${this.values[this.state.deviceSelected][this.values.index].toFixed(2)}`}</div>
-                    <div className="message-box-content message-box-content-child">{`标准值：${this.reyaStand[this.state.deviceSelected]||this.jqStand[this.state.deviceSelected]}`}</div>
+                    <div
+                        className="message-box-content message-box-content-child">{`当前值：${this.values[this.state.deviceSelected][this.values.index].toFixed(2)}`}</div>
+                    <div
+                        className="message-box-content message-box-content-child">{`标准值：${this.reyaStand[this.state.deviceSelected] || this.jqStand[this.state.deviceSelected]}`}</div>
                 </div>
                 <div id="chart-container-left-top" className="chart-container"></div>
                 <div id="chart-container-left-bottom" className="chart-container"></div>
@@ -351,7 +356,8 @@ class ThreeDPage extends Component {
                 <h3>
                     Real-time production
                     monitoring</h3>
-                <input type="button" id="reset-model-view" className="btn" onClick={this.resetModelView.bind(this)} value="重置视角"/>
+                <input type="button" id="reset-model-view" className="btn" onClick={this.resetModelView.bind(this)}
+                       value="重置视角"/>
 
             </div>
         );
