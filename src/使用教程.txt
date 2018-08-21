@@ -1,0 +1,5 @@
+1.本示例需要放置在服务器下运行，直接打开html将无法加载3d模型。如果没有服务器环境，可从以下网盘下载：
+链接：https://pan.baidu.com/s/1uQRZ9TtGFl5v3iktQCDCSA 密码：n1u1
+2.下载解压tomcat_8.0.27_for_report，然后将本示例目录放到tomcat_8.0.27_for_report\webapps\ROOT文件夹下
+3.找到tomcat_8.0.27_for_report\bin\startup.bat，双击运行
+4.访问localhost:8080/3d-demo/index.html
